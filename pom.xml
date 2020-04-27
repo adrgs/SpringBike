@@ -13,7 +13,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>SpringBike</name>
-	<description>Proiect EAP - Aplicatie pentru inchirierea de biciclete - Dragos Albastroiu & Andrei Calin - Grupa 251</description>
+    <description>Proiect EAP - Aplicatie pentru inchirierea de biciclete - Dragos Albastroiu &amp; Andrei Calin - Grupa
+        251
+    </description>
 
 	<properties>
 		<java.version>11</java.version>
