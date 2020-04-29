@@ -14,6 +14,8 @@ public @interface Column {
 
     public boolean primaryKey() default false;
 
+    public boolean foreignKey() default false;
+
     public boolean nullable() default false;
 
     public boolean hasDefaultValue() default false;
