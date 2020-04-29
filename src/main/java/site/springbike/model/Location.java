@@ -4,7 +4,6 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 
 @Table(name = "Location")
 public final class Location implements SpringBikeModel {
