@@ -26,7 +26,11 @@ public class SQLQueryBuilder {
 
     public String generate() {
         String finalSQL = sql;
-        finalSQL += " FROM " + RepositoryUtils.getTableName(model);
+        if (sql.contains("SELECT")) {
+            finalSQL += " FROM " + RepositoryUtils.getTableName(model);
+        } else if (sql.contains("UPDATE")) {
+            finalSQL += " " + RepositoryUtils.getTableName(model) + " SET ";
+        }
         finalSQL += conditions + ";";
         return finalSQL;
     }
@@ -68,6 +72,29 @@ public class SQLQueryBuilder {
             sql += String.join(", ", RepositoryUtils.getColumns(model));
         }
         sql += " ";
+
+        return this;
+    }
+
+    public SQLQueryBuilder update(String... columns) {
+        sql = "UPDATE ";
+
+        boolean hasColumns = false;
+
+        for (String column : columns) {
+            if (conditions == "UPDATE ") {
+                conditions += column;
+            } else {
+                conditions += " = ? , " + column;
+            }
+            hasColumns = true;
+        }
+
+        if (hasColumns == false) {
+            conditions += String.join("= ? , ", RepositoryUtils.getColumns(model));
+        }
+
+        conditions += " = ? ";
 
         return this;
     }

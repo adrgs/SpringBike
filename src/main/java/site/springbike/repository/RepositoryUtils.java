@@ -39,6 +39,39 @@ public class RepositoryUtils {
         return list;
     }
 
+    public static List<Object> getValues(SpringBikeModel model) {
+        List<Object> list = new ArrayList<>();
+
+        Class<?> myClass = model.getClass();
+
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                if (column != null) {
+                    field.setAccessible(true);
+                    try {
+                        list.add(field.get(model));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            if (column != null) {
+                field.setAccessible(true);
+                try {
+                    list.add(field.get(model));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return list;
+    }
+
     public static String getPrimaryKeyColumn(SpringBikeModel model) {
         Class<?> myClass = model.getClass();
 
@@ -54,6 +87,37 @@ public class RepositoryUtils {
             Column column = field.getAnnotation(Column.class);
             if (column.primaryKey()) {
                 return column.name();
+            }
+        }
+
+        return null;
+    }
+
+    public static Integer getPrimaryKeyValue(SpringBikeModel model) {
+        Class<?> myClass = model.getClass();
+
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                field.setAccessible(true);
+                if (column.primaryKey()) {
+                    try {
+                        return (Integer) field.get(model);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            field.setAccessible(true);
+            if (column.primaryKey()) {
+                try {
+                    return (Integer) field.get(model);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
