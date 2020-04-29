@@ -8,10 +8,13 @@ import java.sql.Timestamp;
 @Table(name = "Blacklist")
 public final class Blacklist implements SpringBikeModel {
 
-    @Column(name = "id_company", primaryKey = true, foreignKey = true)
+    @Column(name = "id",primaryKey = true)
+    private Integer id;
+
+    @Column(name = "id_company", foreignKey = true)
     private Integer idCompany;
 
-    @Column(name = "id_client", primaryKey = true, foreignKey = true)
+    @Column(name = "id_client", foreignKey = true)
     private Integer idClient;
 
     @Column(name = "reason",nullable = true)
@@ -20,7 +23,8 @@ public final class Blacklist implements SpringBikeModel {
     @Column(name = "date_created",hasDefaultValue = true)
     private Timestamp dateCreated;
 
-    public Blacklist(Integer idCompany, Integer idClient, String reason, Timestamp dateCreated) {
+    public Blacklist(Integer id, Integer idCompany, Integer idClient, String reason, Timestamp dateCreated) {
+        this.id = id;
         this.idCompany = idCompany;
         this.idClient = idClient;
         this.reason = reason;
@@ -30,6 +34,14 @@ public final class Blacklist implements SpringBikeModel {
     public Blacklist()
     {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getIdCompany() {
@@ -56,11 +68,11 @@ public final class Blacklist implements SpringBikeModel {
         this.reason = reason;
     }
 
-    public Timestamp getTimestampCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setTimestampCreated(Timestamp dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 }
