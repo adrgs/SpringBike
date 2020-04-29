@@ -6,7 +6,7 @@ import site.springbike.model.sql.Table;
 import java.math.BigDecimal;
 
 @Table(name = "Inventory")
-public class Inventory implements SpringBikeModel{
+public final class Inventory implements SpringBikeModel{
 
     @Column(name = "id",primaryKey = true)
     private Integer id;
