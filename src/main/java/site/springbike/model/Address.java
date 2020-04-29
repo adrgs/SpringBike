@@ -9,7 +9,7 @@ public final class Address implements SpringBikeModel {
     @Column(name = "id", primaryKey = true)
     private Integer id;
 
-    @Column(name = "zipcode")
+    @Column(name = "zipcode",nullable = true)
     private String zipcode;
 
     @Column(name = "street")
