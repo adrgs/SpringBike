@@ -1,9 +1,11 @@
 package site.springbike.model;
 
 import site.springbike.model.sql.Column;
+import site.springbike.model.sql.Table;
 
 import java.sql.Date;
 
+@Table(name = "CouponTransaction")
 public final class CouponTransaction implements SpringBikeModel {
     @Column(name = "id", primaryKey = true)
     private Integer id;
