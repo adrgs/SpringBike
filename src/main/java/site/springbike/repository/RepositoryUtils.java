@@ -5,7 +5,10 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.SQLObjectException;
 import site.springbike.model.sql.Table;
 
+import javax.swing.*;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class RepositoryUtils {
@@ -13,6 +16,27 @@ public class RepositoryUtils {
         Class<?> myClass = model.getClass();
         Table table = myClass.getAnnotation(Table.class);
         return table.name();
+    }
+
+    public static List<String> getColumns(SpringBikeModel model) {
+        List<String> list = new ArrayList<>();
+
+        Class<?> myClass = model.getClass();
+
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                if (column != null)
+                    list.add(column.name());
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            if (column != null)
+                list.add(column.name());
+        }
+
+        return list;
     }
 
     public static String getPrimaryKeyColumn(SpringBikeModel model) {

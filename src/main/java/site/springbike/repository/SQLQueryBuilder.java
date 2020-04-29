@@ -65,7 +65,7 @@ public class SQLQueryBuilder {
         }
 
         if (hasColumns == false) {
-            sql += "*";
+            sql += String.join(", ", RepositoryUtils.getColumns(model));
         }
         sql += " ";
 

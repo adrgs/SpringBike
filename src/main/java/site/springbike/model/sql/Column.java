@@ -12,6 +12,8 @@ public @interface Column {
 
     public String value() default "";
 
+    public boolean isBool() default false;
+
     public boolean primaryKey() default false;
 
     public boolean foreignKey() default false;
