@@ -19,4 +19,8 @@ public @interface Column {
     public boolean nullable() default false;
 
     public boolean hasDefaultValue() default false;
+
+    public int minValue() default -1;
+
+    public int maxValue() default -1;
 }
