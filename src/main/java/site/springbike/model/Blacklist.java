@@ -16,7 +16,7 @@ public final class Blacklist implements SpringBikeModel {
     @Column(name = "reason",nullable = true)
     private String reason;
 
-    @Column(name = "date_created")
+    @Column(name = "date_created",hasDefaultValue = true)
     private Date dateCreated;
 
     public Blacklist(Integer idCompany, Integer idClient, String reason, Date dateCreated) {
