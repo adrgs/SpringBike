@@ -18,7 +18,7 @@ public class SpringBikeApplication {
 			DatabaseManager.init();
 
 			User user = new Client();
-			ModelRepository.useModel(user).selectByPrimaryKey(1);
+			user = (Client) ModelRepository.useModel(user).selectByPrimaryKey(1);
 
 			System.out.println(user.getUsername());
 			System.out.println(user.getEmail());

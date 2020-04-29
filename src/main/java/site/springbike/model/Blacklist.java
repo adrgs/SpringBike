@@ -2,7 +2,8 @@ package site.springbike.model;
 
 import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 @Table(name = "Blacklist")
 public final class Blacklist implements SpringBikeModel {
@@ -17,9 +18,9 @@ public final class Blacklist implements SpringBikeModel {
     private String reason;
 
     @Column(name = "date_created",hasDefaultValue = true)
-    private Date dateCreated;
+    private Timestamp dateCreated;
 
-    public Blacklist(Integer idCompany, Integer idClient, String reason, Date dateCreated) {
+    public Blacklist(Integer idCompany, Integer idClient, String reason, Timestamp dateCreated) {
         this.idCompany = idCompany;
         this.idClient = idClient;
         this.reason = reason;
@@ -55,11 +56,11 @@ public final class Blacklist implements SpringBikeModel {
         this.reason = reason;
     }
 
-    public Date getDateCreated() {
+    public Timestamp getTimestampCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setTimestampCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 }

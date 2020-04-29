@@ -4,7 +4,7 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "User")
 public final class Client extends User {
@@ -14,7 +14,7 @@ public final class Client extends User {
     @Column(name = "last_name")
     private String lastName;
 
-    public Client(Integer id, String username, String email, Boolean emailConfirmed, String password, Boolean enabled, Boolean deleted, BigDecimal balance, Date dateCreated, String description, String avatarURL, String firstName, String lastName) {
+    public Client(Integer id, String username, String email, Boolean emailConfirmed, String password, Boolean enabled, Boolean deleted, BigDecimal balance, Timestamp dateCreated, String description, String avatarURL, String firstName, String lastName) {
         super(id, username, email, emailConfirmed, password, enabled, deleted, balance, "Client", dateCreated, description, avatarURL);
         this.firstName = firstName;
         this.lastName = lastName;

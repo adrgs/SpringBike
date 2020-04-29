@@ -3,7 +3,7 @@ package site.springbike.model;
 import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "Transaction")
 public final class Transaction implements SpringBikeModel {
@@ -20,12 +20,12 @@ public final class Transaction implements SpringBikeModel {
     private Integer idLocationFinish;
 
     @Column(name = "date_finish", nullable = true)
-    private Date dateFinish;
+    private Timestamp dateFinish;
 
     @Column(name = "finished", hasDefaultValue = true)
     private Boolean finished;
 
-    public Transaction(Integer id, Integer idLease, Integer idLocationStart, Integer idLocationFinish, Date dateFinish, Boolean finished) {
+    public Transaction(Integer id, Integer idLease, Integer idLocationStart, Integer idLocationFinish, Timestamp dateFinish, Boolean finished) {
         this.id = id;
         this.idLease = idLease;
         this.idLocationStart = idLocationStart;
@@ -69,11 +69,11 @@ public final class Transaction implements SpringBikeModel {
         this.idLocationFinish = idLocationFinish;
     }
 
-    public Date getDateFinish() {
+    public Timestamp getTimestampFinish() {
         return dateFinish;
     }
 
-    public void setDateFinish(Date dateFinish) {
+    public void setTimestampFinish(Timestamp dateFinish) {
         this.dateFinish = dateFinish;
     }
 

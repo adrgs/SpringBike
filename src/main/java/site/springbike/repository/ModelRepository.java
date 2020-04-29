@@ -34,8 +34,6 @@ public class ModelRepository {
             preparedStatement.setObject(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            System.out.println(sql);
-
             newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
 
             if (resultSet.next()) {
@@ -64,14 +62,12 @@ public class ModelRepository {
                 }
             }
 
-            System.out.println(newModel);
-
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
 
-        return this.model;
+        return newModel;
     }
 }

@@ -4,7 +4,7 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "Coupon")
 public final class Coupon implements SpringBikeModel {
@@ -15,10 +15,10 @@ public final class Coupon implements SpringBikeModel {
     private String code;
 
     @Column(name = "date_start", nullable = true)
-    private Date dateStart;
+    private Timestamp dateStart;
 
     @Column(name = "date_finish", nullable = true)
-    private Date dateFinish;
+    private Timestamp dateFinish;
 
     @Column(name = "value")
     private BigDecimal value;
@@ -26,7 +26,7 @@ public final class Coupon implements SpringBikeModel {
     @Column(name = "voucher")
     private Boolean voucher;
 
-    public Coupon(Integer id, String code, Date dateStart, Date dateFinish, BigDecimal value, Boolean voucher) {
+    public Coupon(Integer id, String code, Timestamp dateStart, Timestamp dateFinish, BigDecimal value, Boolean voucher) {
         this.id = id;
         this.code = code;
         this.dateStart = dateStart;
@@ -54,19 +54,19 @@ public final class Coupon implements SpringBikeModel {
         this.code = code;
     }
 
-    public Date getDateStart() {
+    public Timestamp getTimestampStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setTimestampStart(Timestamp dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Date getDateFinish() {
+    public Timestamp getTimestampFinish() {
         return dateFinish;
     }
 
-    public void setDateFinish(Date dateFinish) {
+    public void setTimestampFinish(Timestamp dateFinish) {
         this.dateFinish = dateFinish;
     }
 

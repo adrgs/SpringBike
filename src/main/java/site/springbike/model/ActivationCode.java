@@ -2,7 +2,8 @@ package site.springbike.model;
 
 import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 
 @Table(name = "ActivationCode")
@@ -18,7 +19,7 @@ public final class ActivationCode implements SpringBikeModel {
     private String idUser;
 
     @Column(name = "date_start",hasDefaultValue = true)
-    private Date dateStart;
+    private Timestamp dateStart;
 
     @Column(name = "minutes_available",hasDefaultValue = true)
     private Integer minutesAvailable;
@@ -26,7 +27,7 @@ public final class ActivationCode implements SpringBikeModel {
     @Column(name = "claimed",hasDefaultValue = true)
     private Boolean claimed;
 
-    public ActivationCode(Integer id, String code, String idUser, Date dateStart, Integer minutesAvailable, Boolean claimed) {
+    public ActivationCode(Integer id, String code, String idUser, Timestamp dateStart, Integer minutesAvailable, Boolean claimed) {
         this.id = id;
         this.code = code;
         this.idUser = idUser;
@@ -64,11 +65,11 @@ public final class ActivationCode implements SpringBikeModel {
         this.idUser = idUser;
     }
 
-    public Date getDateStart() {
+    public Timestamp getTimestampStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setTimestampStart(Timestamp dateStart) {
         this.dateStart = dateStart;
     }
 

@@ -3,7 +3,7 @@ package site.springbike.model;
 import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "CouponTransaction")
 public final class CouponTransaction implements SpringBikeModel {
@@ -17,9 +17,9 @@ public final class CouponTransaction implements SpringBikeModel {
     private Integer idCoupon;
 
     @Column(name = "date_created", hasDefaultValue = true)
-    private Date dateCreated;
+    private Timestamp dateCreated;
 
-    public CouponTransaction(Integer id, Integer idUser, Integer idCoupon, Date dateCreated) {
+    public CouponTransaction(Integer id, Integer idUser, Integer idCoupon, Timestamp dateCreated) {
         this.id = id;
         this.idUser = idUser;
         this.idCoupon = idCoupon;
@@ -53,11 +53,11 @@ public final class CouponTransaction implements SpringBikeModel {
         this.idCoupon = idCoupon;
     }
 
-    public Date getDateCreated() {
+    public Timestamp getTimestampCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setTimestampCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 }

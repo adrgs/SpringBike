@@ -4,7 +4,7 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "User")
 public class User implements SpringBikeModel {
@@ -36,7 +36,7 @@ public class User implements SpringBikeModel {
     private String type;
 
     @Column(name = "date_created", hasDefaultValue = true)
-    private Date dateCreated;
+    private Timestamp dateCreated;
 
     @Column(name = "description", nullable = true)
     private String description;
@@ -44,7 +44,7 @@ public class User implements SpringBikeModel {
     @Column(name = "avatar_url", nullable = true)
     private String avatarURL;
 
-    public User(Integer id, String username, String email, Boolean emailConfirmed, String password, Boolean enabled, Boolean deleted, BigDecimal balance, String type, Date dateCreated, String description, String avatarURL) {
+    public User(Integer id, String username, String email, Boolean emailConfirmed, String password, Boolean enabled, Boolean deleted, BigDecimal balance, String type, Timestamp dateCreated, String description, String avatarURL) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -135,11 +135,11 @@ public class User implements SpringBikeModel {
         this.type = type;
     }
 
-    public Date getDateCreated() {
+    public Timestamp getTimestampCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setTimestampCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

@@ -4,7 +4,7 @@ import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Table(name = "Lease")
 public final class Lease implements SpringBikeModel {
@@ -21,15 +21,15 @@ public final class Lease implements SpringBikeModel {
     private Integer idInventory;
 
     @Column(name = "date_start")
-    private Date dateStart;
+    private Timestamp dateStart;
 
     @Column(name = "date_finish")
-    private Date dateFinish;
+    private Timestamp dateFinish;
 
     @Column(name = "price_total")
     private BigDecimal priceTotal;
 
-    public Lease(Integer id, Integer idCompany, Integer idClient, Integer idInventory, Date dateStart, Date dateFinish, BigDecimal priceTotal) {
+    public Lease(Integer id, Integer idCompany, Integer idClient, Integer idInventory, Timestamp dateStart, Timestamp dateFinish, BigDecimal priceTotal) {
         this.id = id;
         this.idCompany = idCompany;
         this.idClient = idClient;
@@ -74,19 +74,19 @@ public final class Lease implements SpringBikeModel {
         this.idInventory = idInventory;
     }
 
-    public Date getDateStart() {
+    public Timestamp getTimestampStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setTimestampStart(Timestamp dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Date getDateFinish() {
+    public Timestamp getTimestampFinish() {
         return dateFinish;
     }
 
-    public void setDateFinish(Date dateFinish) {
+    public void setTimestampFinish(Timestamp dateFinish) {
         this.dateFinish = dateFinish;
     }
 

@@ -2,7 +2,8 @@ package site.springbike.model;
 
 import site.springbike.model.sql.Column;
 import site.springbike.model.sql.Table;
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 @Table(name = "Message")
 public final class Message implements SpringBikeModel{
@@ -23,12 +24,12 @@ public final class Message implements SpringBikeModel{
     private String body;
 
     @Column(name = "date_created",hasDefaultValue = true)
-    private Date dateCreated;
+    private Timestamp dateCreated;
 
     @Column(name = "email",hasDefaultValue = true)
     private Boolean email;
 
-    public Message(Integer id, Integer idUserSender, Integer idUserReceiver, String subject, String body, Date dateCreated, Boolean email) {
+    public Message(Integer id, Integer idUserSender, Integer idUserReceiver, String subject, String body, Timestamp dateCreated, Boolean email) {
         this.id = id;
         this.idUserSender = idUserSender;
         this.idUserReceiver = idUserReceiver;
@@ -83,11 +84,11 @@ public final class Message implements SpringBikeModel{
         this.body = body;
     }
 
-    public Date getDateCreated() {
+    public Timestamp getTimestampCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setTimestampCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
