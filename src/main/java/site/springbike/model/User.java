@@ -17,16 +17,16 @@ public class User implements SpringBikeModel {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "email_confirmed")
+    @Column(name = "email_confirmed", isBool = true)
     private Boolean emailConfirmed;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enabled", hasDefaultValue = true)
+    @Column(name = "enabled", hasDefaultValue = true, isBool = true)
     private Boolean enabled;
 
-    @Column(name = "deleted", hasDefaultValue = true)
+    @Column(name = "deleted", hasDefaultValue = true, isBool = true)
     private Boolean deleted;
 
     @Column(name = "balance", hasDefaultValue = true)
