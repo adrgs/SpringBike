@@ -11,7 +11,7 @@ public final class Company extends User {
     @Column(name = "company_name")
     private String companyName;
 
-    @Column(name = "id_location")
+    @Column(name = "id_location", foreignKey = true)
     private Integer idLocation;
 
     public Company(Integer id, String username, String email, Boolean emailConfirmed, String password, Boolean enabled, Boolean deleted, BigDecimal balance, String type, Date dateCreated, String description, String avatarURL, String companyName, Integer idLocation) {
