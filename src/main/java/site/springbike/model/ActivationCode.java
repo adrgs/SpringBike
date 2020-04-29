@@ -17,13 +17,13 @@ public final class ActivationCode implements SpringBikeModel {
     @Column(name = "id_user",foreignKey = true)
     private String idUser;
 
-    @Column(name = "date_start")
+    @Column(name = "date_start",hasDefaultValue = true)
     private Date dateStart;
 
-    @Column(name = "minutes_available")
+    @Column(name = "minutes_available",hasDefaultValue = true)
     private Integer minutesAvailable;
 
-    @Column(name = "claimed")
+    @Column(name = "claimed",hasDefaultValue = true)
     private Boolean claimed;
 
     public ActivationCode(Integer id, String code, String idUser, Date dateStart, Integer minutesAvailable, Boolean claimed) {
