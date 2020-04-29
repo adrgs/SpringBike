@@ -22,7 +22,7 @@ public final class Transaction implements SpringBikeModel {
     @Column(name = "date_finish", nullable = true)
     private Timestamp dateFinish;
 
-    @Column(name = "finished", hasDefaultValue = true)
+    @Column(name = "finished", hasDefaultValue = true,isBool = true)
     private Boolean finished;
 
     public Transaction(Integer id, Integer idLease, Integer idLocationStart, Integer idLocationFinish, Timestamp dateFinish, Boolean finished) {

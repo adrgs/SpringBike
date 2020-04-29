@@ -24,7 +24,7 @@ public final class ActivationCode implements SpringBikeModel {
     @Column(name = "minutes_available",hasDefaultValue = true)
     private Integer minutesAvailable;
 
-    @Column(name = "claimed",hasDefaultValue = true)
+    @Column(name = "claimed",hasDefaultValue = true,isBool = true)
     private Boolean claimed;
 
     public ActivationCode(Integer id, String code, String idUser, Timestamp dateStart, Integer minutesAvailable, Boolean claimed) {

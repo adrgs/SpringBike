@@ -23,10 +23,10 @@ public final class Inventory implements SpringBikeModel{
     @Column(name = "rent_price_hour")
     private BigDecimal rentPriceHour;
 
-    @Column(name = "deleted",hasDefaultValue = true)
+    @Column(name = "deleted",hasDefaultValue = true,isBool = true)
     private Boolean deleted;
 
-    @Column(name = "visible",hasDefaultValue = true)
+    @Column(name = "visible",hasDefaultValue = true,isBool = true)
     private Boolean visible;
 
     public Inventory(Integer id, Integer idCompany, Integer idClient, Integer idLocation, BigDecimal rentPriceHour, Boolean deleted, Boolean visible) {

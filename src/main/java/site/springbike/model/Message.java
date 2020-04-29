@@ -26,7 +26,7 @@ public final class Message implements SpringBikeModel{
     @Column(name = "date_created",hasDefaultValue = true)
     private Timestamp dateCreated;
 
-    @Column(name = "email",hasDefaultValue = true)
+    @Column(name = "email",hasDefaultValue = true,isBool = true)
     private Boolean email;
 
     public Message(Integer id, Integer idUserSender, Integer idUserReceiver, String subject, String body, Timestamp dateCreated, Boolean email) {

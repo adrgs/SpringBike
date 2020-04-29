@@ -23,7 +23,7 @@ public final class Coupon implements SpringBikeModel {
     @Column(name = "value")
     private BigDecimal value;
 
-    @Column(name = "voucher")
+    @Column(name = "voucher",isBool = true)
     private Boolean voucher;
 
     public Coupon(Integer id, String code, Timestamp dateStart, Timestamp dateFinish, BigDecimal value, Boolean voucher) {
