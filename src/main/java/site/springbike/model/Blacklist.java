@@ -7,10 +7,10 @@ import java.sql.Date;
 @Table(name = "Blacklist")
 public final class Blacklist implements SpringBikeModel {
 
-    @Column(name = "id_company",primaryKey = true)
+    @Column(name = "id_company", primaryKey = true, foreignKey = true)
     private Integer idCompany;
 
-    @Column(name = "id_client",primaryKey = true)
+    @Column(name = "id_client", primaryKey = true, foreignKey = true)
     private Integer idClient;
 
     @Column(name = "reason",nullable = true)
