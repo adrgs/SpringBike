@@ -18,12 +18,12 @@ public final class Location implements SpringBikeModel {
     private Integer idAddress;
 
     @Column(name = "longitude")
-    private Integer longitude;
+    private BigDecimal longitude;
 
     @Column(name = "latitude")
-    private Integer latitude;
+    private BigDecimal latitude;
 
-    public Location(Integer id, Integer idCompany, Integer idAddress, Integer longitude, Integer latitude) {
+    public Location(Integer id, Integer idCompany, Integer idAddress, BigDecimal longitude, BigDecimal latitude) {
         this.id = id;
         this.idCompany = idCompany;
         this.idAddress = idAddress;
@@ -58,19 +58,19 @@ public final class Location implements SpringBikeModel {
         this.idAddress = idAddress;
     }
 
-    public Integer getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
 
-    public Integer getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
     }
 }
