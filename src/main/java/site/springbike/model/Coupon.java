@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Table(name = "Coupon")
-public class Coupon {
+public final class Coupon implements SpringBikeModel {
     @Column(name = "id", primaryKey = true)
     private Integer id;
 
