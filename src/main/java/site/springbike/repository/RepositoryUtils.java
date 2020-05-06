@@ -7,15 +7,34 @@ import site.springbike.model.sql.Table;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class RepositoryUtils {
     public static String getTableName(SpringBikeModel model) {
         Class<?> myClass = model.getClass();
         Table table = myClass.getAnnotation(Table.class);
         return table.name();
+    }
+
+    public static List<Column> getColumnList(SpringBikeModel model) {
+        List<Column> list = new ArrayList<>();
+
+        Class<?> myClass = model.getClass();
+
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                if (column != null)
+                    list.add(column);
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            if (column != null)
+                list.add(column);
+        }
+
+        return list;
     }
 
     public static List<String> getColumns(SpringBikeModel model) {
@@ -37,6 +56,39 @@ public class RepositoryUtils {
         }
 
         return list;
+    }
+
+    public static LinkedHashMap<Column, Object> getColumnValueMap(SpringBikeModel model) {
+        LinkedHashMap<Column, Object> result = new LinkedHashMap<>();
+
+        Class<?> myClass = model.getClass();
+
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                if (column != null) {
+                    field.setAccessible(true);
+                    try {
+                        result.put(column, field.get(model));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            if (column != null) {
+                field.setAccessible(true);
+                try {
+                    result.put(column, field.get(model));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return result;
     }
 
     public static List<Object> getValues(SpringBikeModel model) {

@@ -135,11 +135,11 @@ public class User implements SpringBikeModel {
         this.type = type;
     }
 
-    public Timestamp getTimestampCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setTimestampCreated(Timestamp dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 

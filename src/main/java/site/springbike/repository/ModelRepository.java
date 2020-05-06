@@ -8,6 +8,8 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ModelRepository {
@@ -47,6 +49,60 @@ public class ModelRepository {
         }
 
         return newModel;
+    }
+
+    public SpringBikeModel insertModel() {
+        Connection connection = null;
+        SpringBikeModel newModel = null;
+        int id = -1;
+        try {
+            connection = DatabaseManager.getConnection();
+
+            String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
+            String sql = new SQLQueryBuilder().useModel(model).insert().generate();
+
+            LinkedHashMap<Column, Object> columnValueMap = RepositoryUtils.getColumnValueMap(model);
+
+            for (HashMap.Entry<Column, Object> entry : columnValueMap.entrySet()) {
+
+                if (entry.getKey().hasDefaultValue() == true) {
+                    if (entry.getValue() != null) {
+                        sql = sql.replace("DEFAULT" + entry.getKey().name(), "?");
+                    } else {
+                        sql = sql.replace("DEFAULT" + entry.getKey().name(), "DEFAULT");
+                    }
+                }
+            }
+            System.out.println(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            int i = 0;
+            for (HashMap.Entry<Column, Object> entry : columnValueMap.entrySet()) {
+
+                if (entry.getKey().primaryKey() == false && (entry.getKey().hasDefaultValue() == false || entry.getValue() != null)) {
+                    preparedStatement.setObject(i + 1, entry.getValue());
+                    i++;
+                }
+            }
+            int count = preparedStatement.executeUpdate();
+            if (count == 0) {
+                return null;
+            }
+
+            sql = new SQLQueryBuilder().getLastInsertID();
+            preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return selectByPrimaryKey(id);
     }
 
     public SpringBikeModel selectByPrimaryKey(Integer id) {

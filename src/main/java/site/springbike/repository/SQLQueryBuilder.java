@@ -26,13 +26,53 @@ public class SQLQueryBuilder {
 
     public String generate() {
         String finalSQL = sql;
-        if (sql.contains("SELECT")) {
+        if (sql.contains("SELECT") || sql.contains("DELETE")) {
             finalSQL += " FROM " + RepositoryUtils.getTableName(model);
         } else if (sql.contains("UPDATE")) {
             finalSQL += " " + RepositoryUtils.getTableName(model) + " SET ";
+        } else if (sql.contains("INSERT")) {
+            finalSQL += RepositoryUtils.getTableName(model) + "(";
+
+            List<Column> columns = RepositoryUtils.getColumnList(model);
+            for (Column col : columns) {
+                if (!col.primaryKey()) {
+                    if (finalSQL.endsWith("(")) {
+                        finalSQL += col.name();
+                    } else {
+                        finalSQL += ", " + col.name();
+                    }
+                }
+            }
+            finalSQL += ") VALUES(";
+            int i = 0;
+            for (Column col : columns) {
+                if (col.primaryKey()) continue;
+                if (i != 0) {
+                    finalSQL += ", ";
+                    ;
+                }
+                if (col.hasDefaultValue()) {
+                    finalSQL += "DEFAULT" + col.name();
+                } else {
+                    finalSQL += "?";
+                }
+                i++;
+            }
+            finalSQL += ")";
         }
         finalSQL += conditions + ";";
         return finalSQL;
+    }
+
+    public SQLQueryBuilder insert() {
+        //Insert into User(col1,col2,col2...) VALUES (?,?,?) ...
+        sql = "INSERT INTO ";
+        return this;
+    }
+
+    public SQLQueryBuilder delete() {
+        sql = "DELETE ";
+        return this;
     }
 
     public SQLQueryBuilder where() {
@@ -97,6 +137,11 @@ public class SQLQueryBuilder {
         conditions += " = ? ";
 
         return this;
+    }
+
+    public String getLastInsertID() {
+        String finalSQL = "SELECT LAST_INSERT_ID();";
+        return finalSQL;
     }
 
 }
