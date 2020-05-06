@@ -4,9 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.ui.Model;
 import site.springbike.database.DatabaseManager;
-import site.springbike.model.Client;
-import site.springbike.model.User;
-import site.springbike.repository.ModelRepository;
 
 import java.io.IOException;
 import java.sql.Connection;
