@@ -51,6 +51,28 @@ public class ModelRepository {
         return newModel;
     }
 
+    public boolean deleteModel() {
+        if (model == null) return false;
+        try {
+            Connection connection = DatabaseManager.getConnection();
+
+            String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
+            String sql = new SQLQueryBuilder().useModel(model).delete().where().column(primaryKeyColumn).equals().generate();
+            Integer id = RepositoryUtils.getPrimaryKeyValue(model);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, id);
+            int count = preparedStatement.executeUpdate();
+
+            connection.close();
+
+            return (count > 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public SpringBikeModel insertModel() {
         Connection connection = null;
         SpringBikeModel newModel = null;
