@@ -1,5 +1,6 @@
 package site.springbike.view;
 
+import org.springframework.util.StreamUtils;
 import site.springbike.model.SpringBikeModel;
 import site.springbike.model.sql.Column;
 import site.springbike.repository.ModelRepository;
@@ -29,10 +30,8 @@ public class ModelViewBuilder {
         return column.substring(0, 1).toUpperCase() + column.substring(1);
     }
 
-    public String generateForm() {
-
-        String form = "<form> <br/> ";
-
+    public String generateInputs() {
+        String inputs = "";
         Class<?> myClass = model.getClass();
 
         if (myClass.getSuperclass() != null) {
@@ -50,8 +49,8 @@ public class ModelViewBuilder {
                         if(field.getType().equals(Timestamp.class)) {
                             type = "date";
                         }
-                        form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                        form += "<input type=\"" + type + "\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
+                        inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
+                        inputs += "<input type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
 
                     }
                 }
@@ -71,11 +70,24 @@ public class ModelViewBuilder {
                     if(field.getType().equals(Timestamp.class)) {
                         type = "date";
                     }
-                    form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                    form += "<input type=\"" + type + "\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
+                    inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
+                    inputs += "<input type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
                 }
             }
         }
+        return inputs;
+    }
+
+    public String generateForm(String action) {
+        String form;
+        if (action == null || action.isEmpty() || action.isBlank()) {
+            form = "<form method=\"POST\"> <br/> ";
+        } else {
+            form = "<form method=\"POST\" action=\"" + action + "\"> <br/> ";
+        }
+
+
+        form += generateInputs();
 
         form += "<input type=\"submit\" value=\"Submit\">";
         form += "</form><br/>";
