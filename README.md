@@ -1,5 +1,12 @@
 # Proiect EAP - F.M.I. Unibuc CTI Semestrul II
 
+
+
+![logo](src/main/resources/static/img/logo.png)
+
+
+
+
 ### Live demo: https://springbike.site
 
 ### Echipa:
