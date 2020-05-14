@@ -6,6 +6,7 @@ import site.springbike.repository.ModelRepository;
 import site.springbike.repository.RepositoryUtils;
 
 import java.lang.reflect.Field;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ModelViewBuilder {
@@ -21,18 +22,40 @@ public class ModelViewBuilder {
         return new ModelViewBuilder(model);
     }
 
-    public ModelViewBuilder generateForm() {
+    public String getLabelFromColumn(String column){
+        column = column.replace("_"," ");
+        return column.substring(0, 1).toUpperCase() + column.substring(1);
+    }
 
-        String form = "<form> \n ";
+    public String generateForm() {
 
-        List<Column> columnList = RepositoryUtils.getColumnList(model);
+        String form = "<form> <br/> ";
 
-        for(Column column : columnList) {
+        Class<?> myClass = model.getClass();
 
-            if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                Column column = field.getAnnotation(Column.class);
+                if (column != null) {
+                    if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
+                        if(field.getType().equals(String.class)) {
+                            form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
+                            form += "<input type=\"text\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
+                        }
 
+                    }
+                }
             }
         }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            if (column != null){
+
+            }
+
+        }
+
+        return form;
 
     }
 
