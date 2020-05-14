@@ -18,10 +18,11 @@ public class UserCacheManager {
     }
 
     public static UserCacheManager getInstance() {
-        if (instance == null) {
-            instance = new UserCacheManager();
-        }
-        return instance;
+        return Loader.INSTANCE;
+    }
+
+    private static class Loader {
+        static final UserCacheManager INSTANCE = new UserCacheManager();
     }
 
     public User getUser(Integer id) {
