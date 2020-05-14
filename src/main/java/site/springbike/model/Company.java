@@ -20,6 +20,9 @@ public final class Company extends User {
         this.idLocation = idLocation;
     }
 
+    public Company() {
+    }
+
     public String getCompanyName() {
         return companyName;
     }
