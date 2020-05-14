@@ -25,4 +25,6 @@ public @interface Column {
     public int minValue() default -1;
 
     public int maxValue() default -1;
+
+    public boolean showInForm() default true;
 }

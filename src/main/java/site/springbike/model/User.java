@@ -17,25 +17,25 @@ public class User implements SpringBikeModel {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "email_confirmed", isBool = true)
+    @Column(name = "email_confirmed", isBool = true, showInForm = false)
     private Boolean emailConfirmed;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enabled", hasDefaultValue = true, isBool = true)
+    @Column(name = "enabled", hasDefaultValue = true, isBool = true, showInForm = false)
     private Boolean enabled;
 
-    @Column(name = "deleted", hasDefaultValue = true, isBool = true)
+    @Column(name = "deleted", hasDefaultValue = true, isBool = true, showInForm = false)
     private Boolean deleted;
 
-    @Column(name = "balance", hasDefaultValue = true)
+    @Column(name = "balance", hasDefaultValue = true, showInForm = false)
     private BigDecimal balance;
 
-    @Column(name = "type")
+    @Column(name = "type", showInForm = false)
     private String type;
 
-    @Column(name = "date_created", hasDefaultValue = true)
+    @Column(name = "date_created", hasDefaultValue = true, showInForm = false)
     private Timestamp dateCreated;
 
     @Column(name = "description", nullable = true)

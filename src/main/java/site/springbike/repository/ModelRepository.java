@@ -3,7 +3,6 @@ package site.springbike.repository;
 import site.springbike.database.DatabaseManager;
 import site.springbike.model.SpringBikeModel;
 import site.springbike.model.sql.Column;
-
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
