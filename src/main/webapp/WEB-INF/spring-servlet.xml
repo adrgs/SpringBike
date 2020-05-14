@@ -11,6 +11,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <mvc:annotation-driven/>
     <context:annotation-config/>
     <context:component-scan base-package="site.springbike.controller"/>
+    <context:component-scan base-package="site.springbike.controller.account"/>
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
