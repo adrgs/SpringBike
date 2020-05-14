@@ -17,7 +17,6 @@
         <nav class="nav-menu d-none d-lg-block">
             <ul>
                 <li class="${title.equals("Index") ? "active" : ""}"><a href="/index">Home</a></li>
-                <li class="${title.equals("About") ? "active" : ""}"><a href="/about">About</a></li>
                 <li class="${title.equals("Login") ? "active" : ""}"><a href="/account/login">Login</a></li>
                 <li class="drop-down"><a href="">Register</a>
                     <ul>
@@ -27,8 +26,6 @@
                                 href="/account/register/company">Company</a></li>
                     </ul>
                 </li>
-                <li class="${title.equals("Contact") ? "active" : ""}"><a href="/contact">Contact</a></li>
-
             </ul>
         </nav><!-- .nav-menu -->
 
