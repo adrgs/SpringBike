@@ -16,14 +16,16 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div style="text-align: center; margin-top: 50px">
-                        <h1>Register company</h1>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div style="margin-top: 50px">
+                        <h1 style="text-align: center;">Register company</h1>
                         <%
                             out.print(ModelViewBuilder.useModel(new Company()).generateForm(null));
                         %>
                     </div>
                 </div>
+                <div class="col-lg-3"></div>
             </div>
         </div>
     </section>

@@ -50,7 +50,7 @@ public class ModelViewBuilder {
                             type = "date";
                         }
                         inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                        inputs += "<input type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
+                        inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
 
                     }
                 }
@@ -71,7 +71,7 @@ public class ModelViewBuilder {
                         type = "date";
                     }
                     inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                    inputs += "<input type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
+                    inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
                 }
             }
         }
@@ -89,7 +89,7 @@ public class ModelViewBuilder {
 
         form += generateInputs();
 
-        form += "<input type=\"submit\" value=\"Submit\">";
+        form += "<button type=\"submit\">Submit</button>";
         form += "</form><br/>";
 
         return form;
