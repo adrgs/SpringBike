@@ -1,5 +1,7 @@
 <%@ page import="site.springbike.view.ModelViewBuilder" %>
-<%@ page import="site.springbike.model.Company" %><%--
+<%@ page import="site.springbike.model.Company" %>
+<%@ page import="site.springbike.model.Address" %>
+<%@ page import="site.springbike.model.Location" %><%--
   Created by IntelliJ IDEA.
   User: adragos
   Date: 14/05/2020
@@ -21,7 +23,7 @@
                     <div style="margin-top: 50px">
                         <h1 style="text-align: center;">Register company</h1>
                         <%
-                            out.print(ModelViewBuilder.useModel(new Company()).generateForm(null));
+                            out.print(ModelViewBuilder.useModel(new Company()).addInputs(new Address()).addInputs(new Location()).generateForm(null));
                         %>
                     </div>
                 </div>

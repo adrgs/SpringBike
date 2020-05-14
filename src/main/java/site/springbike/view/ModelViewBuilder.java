@@ -15,9 +15,11 @@ import java.util.List;
 public class ModelViewBuilder {
 
     private SpringBikeModel model;
+    String fields = "";
 
     private ModelViewBuilder(SpringBikeModel model) {
         this.model = model;
+        fields = generateInputs(this.model);
     }
 
     public static ModelViewBuilder useModel(SpringBikeModel model) {
@@ -30,7 +32,12 @@ public class ModelViewBuilder {
         return column.substring(0, 1).toUpperCase() + column.substring(1);
     }
 
-    public String generateInputs() {
+    public ModelViewBuilder addInputs(SpringBikeModel model) {
+        this.fields += generateInputs(model);
+        return this;
+    }
+
+    public String generateInputs(SpringBikeModel model) {
         String inputs = "";
         Class<?> myClass = model.getClass();
 
@@ -86,8 +93,7 @@ public class ModelViewBuilder {
             form = "<form method=\"POST\" action=\"" + action + "\"> <br/> ";
         }
 
-
-        form += generateInputs();
+        form += fields;
 
         form += "<button type=\"submit\">Submit</button>";
         form += "</form><br/>";
