@@ -100,7 +100,7 @@ public class SQLQueryBuilder {
         boolean hasColumns = false;
 
         for (String column : columns) {
-            if (sql == "SELECT ") {
+            if (sql.equals("SELECT ")) {
                 sql += column;
             } else {
                 sql += ", " + column;
@@ -122,7 +122,7 @@ public class SQLQueryBuilder {
         boolean hasColumns = false;
 
         for (String column : columns) {
-            if (conditions == "UPDATE ") {
+            if (conditions.equals("UPDATE ")) {
                 conditions += column;
             } else {
                 conditions += " = ? , " + column;
