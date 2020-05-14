@@ -18,7 +18,7 @@
             <ul>
                 <li class="${title.equals("Index") ? "active" : ""}"><a href="/index">Home</a></li>
                 <li class="${title.equals("About") ? "active" : ""}"><a href="/about">About</a></li>
-                <li class="${title.equals("Login") ? "active" : ""}"><a href="/about">Login</a></li>
+                <li class="${title.equals("Login") ? "active" : ""}"><a href="/account/login">Login</a></li>
                 <li class="drop-down"><a href="">Register</a>
                     <ul>
                         <li class="${title.equals("Register Client") ? "active" : ""}"><a
