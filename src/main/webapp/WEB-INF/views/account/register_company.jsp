@@ -20,7 +20,7 @@
                     <div style="text-align: center; margin-top: 50px">
                         <h1>Register company</h1>
                         <%
-                            out.print(ModelViewBuilder.useModel(new Company()).generateForm());
+                            out.print(ModelViewBuilder.useModel(new Company()).generateForm(null));
                         %>
                     </div>
                 </div>

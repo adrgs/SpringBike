@@ -20,7 +20,7 @@
                     <div style="text-align: center; margin-top: 50px">
                         <h1>Register client</h1>
                         <%
-                            out.print(ModelViewBuilder.useModel(new Client()).generateForm());
+                            out.print(ModelViewBuilder.useModel(new Client()).generateForm(null));
                         %>
                     </div>
                 </div>
