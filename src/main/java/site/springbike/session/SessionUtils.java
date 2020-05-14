@@ -6,6 +6,7 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 import org.apache.commons.codec.binary.Hex;
+import site.springbike.model.User;
 
 public class SessionUtils {
     private static SessionUtils instance;
@@ -38,7 +40,28 @@ public class SessionUtils {
     }
 
     public UserSession getUserSession(String session) {
-        return null;
+        byte[] encryptedBytes = Base64.getDecoder().decode(session);
+        Cipher cipher = null;
+        try {
+            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            SecretKeySpec sKeySpec = new SecretKeySpec(this.sessionKey, "AES");
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(this.sessionIV);
+            cipher.init(Cipher.DECRYPT_MODE, sKeySpec, ivParameterSpec);
+
+            byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
+            String jsonString = new String(decryptedBytes, StandardCharsets.UTF_8);
+            Gson gson = new Gson();
+            UserSession userSession = gson.fromJson(jsonString, UserSession.class);
+
+            String hmac = getHmac(userSession.id.toString());
+            if (!hmac.equals(userSession.getHmac())) {
+                return null;
+            }
+
+            return userSession;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     private String getHmac(String message) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
