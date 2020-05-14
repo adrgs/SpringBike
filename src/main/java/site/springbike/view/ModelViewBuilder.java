@@ -6,6 +6,8 @@ import site.springbike.repository.ModelRepository;
 import site.springbike.repository.RepositoryUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -38,10 +40,18 @@ public class ModelViewBuilder {
                 Column column = field.getAnnotation(Column.class);
                 if (column != null) {
                     if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
+                        String type = "";
                         if(field.getType().equals(String.class)) {
-                            form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                            form += "<input type=\"text\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
+                            type = "text";
                         }
+                        if(field.getType().equals(BigDecimal.class)) {
+                            type = "number";
+                        }
+                        if(field.getType().equals(Timestamp.class)) {
+                            type = "date";
+                        }
+                        form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
+                        form += "<input type=\"" + type + "\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
 
                     }
                 }
@@ -50,13 +60,27 @@ public class ModelViewBuilder {
         for (Field field : myClass.getDeclaredFields()) {
             Column column = field.getAnnotation(Column.class);
             if (column != null){
-
+                if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
+                    String type = "";
+                    if(field.getType().equals(String.class)) {
+                        type = "text";
+                    }
+                    if(field.getType().equals(BigDecimal.class)) {
+                        type = "number";
+                    }
+                    if(field.getType().equals(Timestamp.class)) {
+                        type = "date";
+                    }
+                    form += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
+                    form += "<input type=\"" + type + "\" id=\"" + column.name() +"\" name=\"" + column.name() + "\"><br/>";
+                }
             }
-
         }
 
-        return form;
+        form += "<input type=\"submit\" value=\"Submit\">";
+        form += "</form><br/>";
 
+        return form;
     }
 
 }
