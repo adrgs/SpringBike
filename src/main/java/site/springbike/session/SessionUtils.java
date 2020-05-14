@@ -37,16 +37,8 @@ public class SessionUtils {
         return instance;
     }
 
-    private String decryptSession(String session) {
-
-    }
-
-    public boolean verifyEncryptedSession(String session) {
-
-    }
-
     public UserSession getUserSession(String session) {
-        if (!verifyEncryptedSession(session)) return null;
+        return null;
     }
 
     private String getHmac(String message) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
