@@ -49,8 +49,8 @@ public class ModelViewBuilder {
                         if(field.getType().equals(Timestamp.class)) {
                             type = "date";
                         }
-                        inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                        inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
+                        inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + (column.nullable() ? "" : "*") + "</label><br/>";
+                        inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\" " + (column.nullable() ? "" : "required") + "><br/>";
 
                     }
                 }
@@ -70,8 +70,8 @@ public class ModelViewBuilder {
                     if(field.getType().equals(Timestamp.class)) {
                         type = "date";
                     }
-                    inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + "</label><br/>";
-                    inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\"><br/>";
+                    inputs += "<label for=\"" + column.name() + "\">" + getLabelFromColumn(column.name()) + (column.nullable() ? "" : "*") + "</label><br/>";
+                    inputs += "<input class=\"form-control\" type=\"" + type + "\" id=\"" + column.name() + "\" name=\"" + column.name() + "\" " + (column.nullable() ? "" : "required") + "><br/>";
                 }
             }
         }
