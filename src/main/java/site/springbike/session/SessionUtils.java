@@ -17,7 +17,6 @@ import org.apache.commons.codec.binary.Hex;
 import site.springbike.model.User;
 
 public class SessionUtils {
-    private static SessionUtils instance;
     private byte[] sessionKey;
     private byte[] sessionIV;
     private byte[] hmacKey;
@@ -33,10 +32,11 @@ public class SessionUtils {
     }
 
     public static SessionUtils getInstance() {
-        if (instance == null) {
-            instance = new SessionUtils();
-        }
-        return instance;
+        return Loader.INSTANCE;
+    }
+
+    private static class Loader {
+        static final SessionUtils INSTANCE = new SessionUtils();
     }
 
     public UserSession getUserSession(String session) {
