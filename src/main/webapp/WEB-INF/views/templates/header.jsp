@@ -36,7 +36,7 @@
     <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
-    <link href="/vendor/owl.carousel//owl.carousel.min.css" rel="stylesheet">
+    <link href="/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="/css/style.css" rel="stylesheet">
