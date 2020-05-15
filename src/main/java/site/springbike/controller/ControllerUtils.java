@@ -44,7 +44,7 @@ public class ControllerUtils {
         }
     }
 
-    public boolean parseModelFromInput(SpringBikeModel model, Map<String, String[]> map){
+    public static boolean parseModelFromInput(SpringBikeModel model, Map<String, String[]> map){
 
         Class<?> myClass = model.getClass();
         if (myClass.getSuperclass() != null) {

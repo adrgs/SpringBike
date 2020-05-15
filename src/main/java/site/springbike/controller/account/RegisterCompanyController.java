@@ -55,7 +55,7 @@ public class RegisterCompanyController {
             }
         }
 
-        Class<?> myAddress = address.getClass();
+
 
 
 
