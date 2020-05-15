@@ -32,6 +32,12 @@ public class ModelViewBuilder {
         return column.substring(0, 1).toUpperCase() + column.substring(1);
     }
 
+    public ModelViewBuilder addInput(String name, String type, boolean required, String value) {
+        this.fields += "<label for=\"" + name + "\">" + getLabelFromColumn(name) + (!required ? "" : "*") + "</label><br/>";
+        this.fields += "<input " + (value == null || value.isBlank() ? "" : "value=\"" + value + "\"") + " class=\"form-control\" type=\"" + type + "\" id=\"" + name + "\" name=\"" + name + "\" " + (!required ? "" : "required") + "><br/>";
+        return this;
+    }
+
     public ModelViewBuilder addInputs(SpringBikeModel model) {
         this.fields += generateInputs(model);
         return this;
