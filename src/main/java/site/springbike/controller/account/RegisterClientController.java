@@ -6,13 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.controller.ControllerUtils;
+import site.springbike.crypto.SBCrypt;
 import site.springbike.model.Client;
 import site.springbike.model.User;
+import site.springbike.model.sql.Column;
 import site.springbike.repository.ModelRepository;
 import site.springbike.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
 import java.util.Map;
 
 @Controller
@@ -52,7 +55,47 @@ public class RegisterClientController {
             }
         }
 
-        ModelRepository.useModel(client).insertModel();
+        Class<?> myClass = client.getClass();
+        if (myClass.getSuperclass() != null) {
+            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                field.setAccessible(true);
+                Column column = field.getAnnotation(Column.class);
+                if (column == null) continue;
+
+                String[] val = map.get(column.name());
+                if (val == null) continue;
+                if (val.length != 1 && !column.nullable()) {
+                    return ControllerUtils.errorModelAndView(PATH, TITLE, "Required field missing");
+                }
+
+                try {
+                    field.set(client, val[0]);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        for (Field field : myClass.getDeclaredFields()) {
+            Column column = field.getAnnotation(Column.class);
+            field.setAccessible(true);
+            String[] val = map.get(column.name());
+            if (val == null) continue;
+            if (val.length != 1 && !column.nullable()) {
+                return ControllerUtils.errorModelAndView(PATH, TITLE, "Required field missing");
+            }
+
+            try {
+                field.set(client, val[0]);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        client.setPassword(SBCrypt.hashPassword(client.getPassword()));
+        client = (Client) ModelRepository.useModel(client).insertModel();
+        if (client == null) {
+            return ControllerUtils.errorModelAndView(PATH, TITLE, "Account creation failed.");
+        }
 
         return new ModelAndView("redirect:/index"); //success - to be modified to /response or something
     }
