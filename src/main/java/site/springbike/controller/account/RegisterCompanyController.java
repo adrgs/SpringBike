@@ -74,12 +74,14 @@ public class RegisterCompanyController {
         company.setIdLocation(location.getId());
 
         company.setPassword(SBCrypt.hashPassword(company.getPassword()));
+        company = (Company) ModelRepository.useModel(company).insertModel();
         if(company.getId()==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid company");
 
-        company = (Company) ModelRepository.useModel(company).insertModel();
         if(company==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Account creation failed.");
+
+        location.setIdCompany(company.getId());
 
         return new ModelAndView("redirect:/index");
 
