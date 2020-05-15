@@ -43,7 +43,9 @@ public class RegisterCompanyController {
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.");
         }
 
-
+        if (!username.matches("^[a-zA-Z0-9_]*$")) {
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed");
+        }
 
         //address location company
 
