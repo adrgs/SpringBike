@@ -9,6 +9,7 @@ import site.springbike.controller.ControllerUtils;
 import site.springbike.model.Address;
 import site.springbike.model.Company;
 import site.springbike.model.Location;
+import site.springbike.repository.ModelRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,10 +43,21 @@ public class RegisterCompanyController {
         if (username == null || username.length() < 3 || username.length() > 48) {
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.");
         }
-
         if (!username.matches("^[a-zA-Z0-9_]*$")) {
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed");
         }
+
+        if (ModelRepository.useModel(company).findByColumnLowerCase("username", request.getParameter("username")) != null) {
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "The username already exists in the database.");
+        } else {
+            if (ModelRepository.useModel(company).findByColumnLowerCase("email", request.getParameter("email")) != null) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "The email already exists in the database.");
+            }
+        }
+
+        Class<?> myAddress = address.getClass();
+
+
 
         //address location company
 
