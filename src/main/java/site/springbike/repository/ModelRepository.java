@@ -191,7 +191,7 @@ public class ModelRepository {
         return newModels;
     }
 
-    public List<SpringBikeModel> getAllByColumn(String columnName, String value) {
+    public List<SpringBikeModel> getAllByColumn(String columnName, Object value) {
         return selectByColumn(columnName, value, false, false);
     }
 

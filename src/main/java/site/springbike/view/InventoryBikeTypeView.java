@@ -5,18 +5,18 @@ import site.springbike.model.Bike;
 import site.springbike.model.BikeType;
 import site.springbike.model.Inventory;
 
-public class InvetoryBikeTypeView {
+public class InventoryBikeTypeView {
     private Inventory inventory;
     private Bike bike;
     private BikeType type;
 
-    public InvetoryBikeTypeView(Inventory inventory, Bike bike, BikeType type) {
+    public InventoryBikeTypeView(Inventory inventory, Bike bike, BikeType type) {
         this.inventory = inventory;
         this.bike = bike;
         this.type = type;
     }
 
-    public InvetoryBikeTypeView() {
+    public InventoryBikeTypeView() {
     }
 
     @Override

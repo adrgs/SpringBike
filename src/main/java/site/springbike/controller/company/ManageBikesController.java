@@ -7,15 +7,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.cache.UserCacheManager;
 import site.springbike.controller.ControllerUtils;
+import site.springbike.model.Bike;
 import site.springbike.model.Inventory;
+import site.springbike.model.SpringBikeModel;
 import site.springbike.model.User;
 import site.springbike.repository.ModelRepository;
 import site.springbike.repository.UserRepository;
 import site.springbike.session.SessionUtils;
+import site.springbike.view.InventoryBikeTypeView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ManageBikesController {
@@ -32,7 +37,15 @@ public class ManageBikesController {
             return "redirect:/index";
         }
 
-        ModelRepository.useModel(new Inventory()).findByColumn("id_company", user.getId());
+        List<InventoryBikeTypeView> inventoryBikeTypeViews = new ArrayList<>();
+        List<SpringBikeModel> inventoryList = ModelRepository.useModel(new Inventory()).getAllByColumn("id_company", user.getId());
+        for (SpringBikeModel inventory : inventoryList) {
+            Inventory inv = (Inventory) inventory;
+            if (inv == null) continue;
+            ;
+            Bike bike = ModelRepository.useModel(new Bike()).selectByPrimaryKey(inv.get);
+        }
+
 
         model.addAttribute("user", user);
         return VIEW;

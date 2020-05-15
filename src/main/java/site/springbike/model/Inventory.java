@@ -14,8 +14,8 @@ public final class Inventory implements SpringBikeModel{
     @Column(name = "id_company",foreignKey = true)
     private Integer idCompany;
 
-    @Column(name = "id_client",foreignKey = true)
-    private Integer idClient;
+    @Column(name = "id_bike", foreignKey = true)
+    private Integer idBike;
 
     @Column(name = "id_location",foreignKey = true,nullable = true)
     private Integer idLocation;
@@ -29,10 +29,10 @@ public final class Inventory implements SpringBikeModel{
     @Column(name = "visible",hasDefaultValue = true,isBool = true)
     private Boolean visible;
 
-    public Inventory(Integer id, Integer idCompany, Integer idClient, Integer idLocation, BigDecimal rentPriceHour, Boolean deleted, Boolean visible) {
+    public Inventory(Integer id, Integer idCompany, Integer idBike, Integer idLocation, BigDecimal rentPriceHour, Boolean deleted, Boolean visible) {
         this.id = id;
         this.idCompany = idCompany;
-        this.idClient = idClient;
+        this.idBike = idBike;
         this.idLocation = idLocation;
         this.rentPriceHour = rentPriceHour;
         this.deleted = deleted;
@@ -60,12 +60,12 @@ public final class Inventory implements SpringBikeModel{
         this.idCompany = idCompany;
     }
 
-    public Integer getIdClient() {
-        return idClient;
+    public Integer getIdBike() {
+        return idBike;
     }
 
-    public void setIdClient(Integer idClient) {
-        this.idClient = idClient;
+    public void setIdBike(Integer idBike) {
+        this.idBike = idBike;
     }
 
     public Integer getIdLocation() {
