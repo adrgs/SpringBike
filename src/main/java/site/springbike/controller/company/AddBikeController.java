@@ -15,8 +15,8 @@ import java.util.Map;
 @Controller
 public class AddBikeController {
 
-    public static final String VIEW = "company/add_bikes";
-    public static final String PATH = "/company/add_bikes";
+    public static final String VIEW = "company/add_bike";
+    public static final String PATH = "/company/add_bike";
     public static final String TITLE = "Add bikes";
 
     @GetMapping(PATH)
@@ -41,6 +41,14 @@ public class AddBikeController {
         }
 
         Map<String, String[]> map = request.getParameterMap();
+        Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+        if (quantity == null) {
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Quantity field missing");
+        }
+
+        for (int i = 0; i < quantity; i++) {
+
+        }
 
         return new ModelAndView("redirect:/company/manage_bikes"); //success - to be modified to /dashboard or something
     }

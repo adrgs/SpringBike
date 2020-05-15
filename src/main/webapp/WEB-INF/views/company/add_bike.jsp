@@ -23,7 +23,7 @@
                         <div class="form-validate">${error}</div>
                         <a href="/company/manage_bikes">Go back</a>
                         <%
-                            out.print(ModelViewBuilder.useModel(new Bike()).addInputs(new BikeType()).addInputs(new Inventory()).generateForm(null));
+                            out.print(ModelViewBuilder.useModel(new Bike()).addInputs(new BikeType()).addInputs(new Inventory()).addInput("quantity", "number", true, "1").generateForm(null));
                         %>
                     </div>
                 </div>
