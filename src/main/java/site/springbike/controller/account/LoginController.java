@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.cache.UserCacheManager;
+import site.springbike.model.Client;
+import site.springbike.model.Company;
 import site.springbike.model.User;
+import site.springbike.repository.ModelRepository;
 import site.springbike.repository.UserRepository;
 import site.springbike.session.SessionUtils;
 
@@ -38,6 +41,12 @@ public class LoginController {
             modelAndView.addObject("title", TITLE);
             modelAndView.addObject("error", "The credentials you entered did not match our records. Please double-check and try again.");
             return modelAndView;
+        }
+
+        if (user.getType().equals("Company")) {
+            user = (Company) ModelRepository.useModel(new Company()).selectByPrimaryKey(user.getId());
+        } else if (user.getType().equals("Client")) {
+            user = (Client) ModelRepository.useModel(new Client()).selectByPrimaryKey(user.getId());
         }
 
         UserCacheManager.getInstance().putUser(user);

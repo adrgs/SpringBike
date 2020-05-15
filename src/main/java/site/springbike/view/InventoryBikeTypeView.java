@@ -24,7 +24,7 @@ public class InventoryBikeTypeView {
         StringBuilder builder = new StringBuilder();
         builder.append("<div>");
 
-        builder.append("<img src=\"");
+        builder.append("<img width=\"200px\" height=\"200px\" src=\"");
         builder.append(HtmlUtils.htmlEscape(bike.getAvatarURL()));
         builder.append("\" onerror=\"this.src='/img/default_bike.png'\" />");
 
@@ -46,11 +46,11 @@ public class InventoryBikeTypeView {
 
         builder.append("<a href=\"/company/edit_bike/");
         builder.append(inventory.getId());
-        builder.append("\">Edit bike</a>");
+        builder.append("\">Edit bike</a><br/>");
 
         builder.append("<a href=\"/company/delete_bike/");
         builder.append(inventory.getId());
-        builder.append("\">Delete bike</a>");
+        builder.append("\">Delete bike</a><br/>");
 
         builder.append("</div><br/>");
         return builder.toString();

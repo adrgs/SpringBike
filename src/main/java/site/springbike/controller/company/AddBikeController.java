@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.controller.ControllerUtils;
-import site.springbike.model.User;
+import site.springbike.model.*;
+import site.springbike.repository.ModelRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,34 @@ public class AddBikeController {
         }
 
         for (int i = 0; i < quantity; i++) {
-
+            BikeType bikeType = new BikeType();
+            if (!ControllerUtils.parseModelFromInput(bikeType, map)) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+            }
+            bikeType = (BikeType) ModelRepository.useModel(bikeType).insertModel();
+            if (bikeType == null) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+            }
+            Bike bike = new Bike();
+            if (!ControllerUtils.parseModelFromInput(bike, map)) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+            }
+            bike.setIdType(bikeType.getId());
+            bike = (Bike) ModelRepository.useModel(bike).insertModel();
+            if (bike == null) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike.");
+            }
+            Inventory inventory = new Inventory();
+            if (!ControllerUtils.parseModelFromInput(inventory, map)) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+            }
+            inventory.setIdBike(bike.getId());
+            inventory.setIdCompany(user.getId());
+            inventory.setIdLocation(((Company) user).getIdLocation());
+            inventory = (Inventory) ModelRepository.useModel(inventory).insertModel();
+            if (inventory == null) {
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid inventory.");
+            }
         }
 
         return new ModelAndView("redirect:/company/manage_bikes"); //success - to be modified to /dashboard or something
