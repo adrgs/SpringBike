@@ -26,7 +26,7 @@
                             <input class="form-control" type="password" id="password" name="password" required=""><br/>
                             <button type="submit">Submit</button>
                         </form>
-                        <div class="validate">${error}</div>
+                        <div class="form-validate">${error}</div>
                     </div>
                 </div>
                 <div class="col-lg-3"></div>
