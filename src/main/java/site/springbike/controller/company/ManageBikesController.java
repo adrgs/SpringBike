@@ -50,32 +50,4 @@ public class ManageBikesController {
         model.addAttribute("bikeViews", inventoryBikeTypeViews);
         return VIEW;
     }
-
-    @PostMapping("/company/add_bike")
-    public ModelAndView postLogin(HttpServletRequest request, HttpServletResponse response) {
-
-        String name = request.getParameter("name");
-        String password = request.getParameter("password");
-
-        User user = UserRepository.findByNameAndPassword(name, password);
-        if (user == null) {
-            ModelAndView modelAndView = new ModelAndView(VIEW);
-            modelAndView.addObject("title", TITLE);
-            modelAndView.addObject("error", "The credentials you entered did not match our records. Please double-check and try again.");
-            return modelAndView;
-        }
-
-        UserCacheManager.getInstance().putUser(user);
-        try {
-            String session = SessionUtils.getInstance().encryptSession(user.getId());
-            Cookie cookie = new Cookie("session", session);
-            cookie.setPath("/");
-            cookie.setMaxAge(129600);
-            response.addCookie(cookie);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return new ModelAndView("redirect:/index"); //success - to be modified to /dashboard or something
-    }
 }
