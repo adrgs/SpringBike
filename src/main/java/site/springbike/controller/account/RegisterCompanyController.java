@@ -1,5 +1,6 @@
 package site.springbike.controller.account;
 
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,14 +60,14 @@ public class RegisterCompanyController {
         if(!ControllerUtils.parseModelFromInput(address,map))
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
         address = (Address) ModelRepository.useModel(address).insertModel();
-        if(address.getId()==null)
+        if(address==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid address");
 
         if(!ControllerUtils.parseModelFromInput(location,map))
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
         location.setIdAddress(address.getId());
         location = (Location) ModelRepository.useModel(location).insertModel();
-        if(location.getId()==null)
+        if(location==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid location");
 
         if(!ControllerUtils.parseModelFromInput(company,map))
@@ -75,13 +76,12 @@ public class RegisterCompanyController {
 
         company.setPassword(SBCrypt.hashPassword(company.getPassword()));
         company = (Company) ModelRepository.useModel(company).insertModel();
-        if(company.getId()==null)
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid company");
 
         if(company==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Account creation failed.");
 
         location.setIdCompany(company.getId());
+        ModelRepository.useModel(location).updateModel();
 
         return new ModelAndView("redirect:/index");
 
