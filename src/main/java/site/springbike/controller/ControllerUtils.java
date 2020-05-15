@@ -12,6 +12,7 @@ import site.springbike.session.UserSession;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class ControllerUtils {
@@ -60,7 +61,11 @@ public class ControllerUtils {
                 }
 
                 try {
-                    field.set(model, val[0]);
+                    if (field.getType() == BigDecimal.class) {
+                        field.set(model, new BigDecimal(val[0]));
+                    } else {
+                        field.set(model, val[0]);
+                    }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -76,7 +81,11 @@ public class ControllerUtils {
             }
 
             try {
-                field.set(model, val[0]);
+                if (field.getType() == BigDecimal.class) {
+                    field.set(model, new BigDecimal(val[0]));
+                } else {
+                    field.set(model, val[0]);
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
