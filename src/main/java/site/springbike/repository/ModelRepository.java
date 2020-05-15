@@ -126,6 +126,69 @@ public class ModelRepository {
         return selectByPrimaryKey(id);
     }
 
+    private SpringBikeModel selectByColumn(String columnName, Object value, boolean like) {
+        Connection connection = null;
+        SpringBikeModel newModel = null;
+        try {
+            connection = DatabaseManager.getConnection();
+
+            String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
+            String sql;
+            if (like) {
+                sql = new SQLQueryBuilder().useModel(model).select().where().column(columnName).like().generate();
+            } else {
+                sql = new SQLQueryBuilder().useModel(model).select().where().column(columnName).equals().generate();
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, value);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
+
+            if (resultSet.next()) {
+                Class<?> myClass = model.getClass();
+                if (myClass.getSuperclass() != null) {
+                    for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                        field.setAccessible(true);
+                        Column column = field.getAnnotation(Column.class);
+                        if (column == null) continue;
+
+                        if (column.isBool()) {
+                            field.set(newModel, resultSet.getBoolean(column.name()));
+                        } else {
+                            field.set(newModel, resultSet.getObject(column.name()));
+                        }
+                    }
+                }
+                for (Field field : myClass.getDeclaredFields()) {
+                    Column column = field.getAnnotation(Column.class);
+                    field.setAccessible(true);
+                    if (column.isBool()) {
+                        field.set(newModel, resultSet.getBoolean(column.name()));
+                    } else {
+                        field.set(newModel, resultSet.getObject(column.name()));
+                    }
+                }
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return newModel;
+    }
+
+    public SpringBikeModel findWildcardByColumn(String columnName, String value) {
+        return selectByColumn(columnName, value, true);
+    }
+
+    public SpringBikeModel findByColumn(String columnName, Object value) {
+        return selectByColumn(columnName, value, true);
+    }
+
     public SpringBikeModel selectByPrimaryKey(Integer id) {
         Connection connection = null;
         SpringBikeModel newModel = null;
