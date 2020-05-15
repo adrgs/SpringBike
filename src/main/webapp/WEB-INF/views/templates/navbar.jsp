@@ -1,4 +1,4 @@
-<%--
+<%@ page import="site.springbike.model.User" %><%--
   Created by IntelliJ IDEA.
   User: adragos
   Date: 14/05/2020
@@ -32,6 +32,30 @@
                 <%
                 } else {
                 %>
+
+                <%
+                    User user = (User) request.getAttribute("user");
+                    if (user.getType().equals("Client")) {
+                %>
+                <li class="${title.equals("Rent a bike") ? "active" : ""}"><a href="/client/rent_bike">Rent a bike</a>
+                </li>
+                <li class="${title.equals("Transaction history") ? "active" : ""}"><a
+                        href="/client/transaction_history">Transaction history</a></li>
+                <li class="${title.equals("My rented bikes") ? "active" : ""}"><a href="/client/rented_bikes">My rented
+                    bikes</a></li>
+                <li><a href="#">Balance: ${user.getBalance()}</a></li>
+                <%
+                } else if (user.getType().equals("Company")) {
+                %>
+                <li class="${title.equals("Manage bikes") ? "active" : ""}"><a href="/company/manage_bikes">Manage
+                    bikes</a></li>
+                <li class="${title.equals("Reports") ? "active" : ""}"><a href="/company/reports">Reports</a></li>
+                <li class="${title.equals("Manage clients") ? "active" : ""}"><a href="/company/manage_clients">Manage
+                    clients</a></li>
+                <%
+                    }
+                %>
+
                 <li><a href="#">Hello, ${user.getUsername()}</a></li>
                 <li class="${title.equals("Logout") ? "active" : ""}"><a href="/account/logout">Logout</a></li>
                 <%
