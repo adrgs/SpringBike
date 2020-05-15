@@ -15,12 +15,21 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div>
-                        <h1>Login page</h1>
-                        <p>Login form</p>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div style="margin-top: 50px">
+                        <h1 style="text-align: center;">Login</h1>
+                        <form method="POST">
+                            <label for="name">Username/Email*</label><br/>
+                            <input class="form-control" type="text" id="name" name="name" required=""><br/>
+                            <label for="password">Password*</label><br/>
+                            <input class="form-control" type="password" id="password" name="password" required=""><br/>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <div class="validate">${error}</div>
                     </div>
                 </div>
+                <div class="col-lg-3"></div>
             </div>
         </div>
     </section>

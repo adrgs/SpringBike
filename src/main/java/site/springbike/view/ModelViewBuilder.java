@@ -96,7 +96,7 @@ public class ModelViewBuilder {
         form += fields;
 
         form += "<button type=\"submit\">Submit</button>";
-        form += "</form><br/>";
+        form += "</form>";
 
         return form;
     }
