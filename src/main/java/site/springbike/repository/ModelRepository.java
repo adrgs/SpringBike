@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -126,9 +127,10 @@ public class ModelRepository {
         return selectByPrimaryKey(id);
     }
 
-    private SpringBikeModel selectByColumn(String columnName, Object value, boolean like, boolean lower) {
+    private List<SpringBikeModel> selectByColumn(String columnName, Object value, boolean like, boolean lower) {
         Connection connection = null;
         SpringBikeModel newModel = null;
+        List<SpringBikeModel> newModels = new ArrayList<>();
         try {
             connection = DatabaseManager.getConnection();
 
@@ -152,7 +154,7 @@ public class ModelRepository {
             preparedStatement.setObject(1, value);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
                 Class<?> myClass = model.getClass();
                 if (myClass.getSuperclass() != null) {
@@ -177,31 +179,44 @@ public class ModelRepository {
                         field.set(newModel, resultSet.getObject(column.name()));
                     }
                 }
+                newModels.add(newModel);
             }
 
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return newModels;
         }
 
-        return newModel;
+        return newModels;
+    }
+
+    public List<SpringBikeModel> getAllByColumn(String columnName, String value) {
+        return selectByColumn(columnName, value, false, false);
     }
 
     public SpringBikeModel findWildcardByColumn(String columnName, String value) {
-        return selectByColumn(columnName, value, true, false);
+        List<SpringBikeModel> modelList = selectByColumn(columnName, value, true, false);
+        if (modelList.size() == 0) return null;
+        return modelList.get(0);
     }
 
     public SpringBikeModel findByColumn(String columnName, Object value) {
-        return selectByColumn(columnName, value, true, false);
+        List<SpringBikeModel> modelList = selectByColumn(columnName, value, true, false);
+        if (modelList.size() == 0) return null;
+        return modelList.get(0);
     }
 
     public SpringBikeModel findWildcardByColumnLowerCase(String columnName, String value) {
-        return selectByColumn(columnName, value, true, true);
+        List<SpringBikeModel> modelList = selectByColumn(columnName, value, true, true);
+        if (modelList.size() == 0) return null;
+        return modelList.get(0);
     }
 
     public SpringBikeModel findByColumnLowerCase(String columnName, Object value) {
-        return selectByColumn(columnName, value, false, true);
+        List<SpringBikeModel> modelList = selectByColumn(columnName, value, false, true);
+        if (modelList.size() == 0) return null;
+        return modelList.get(0);
     }
 
     public SpringBikeModel selectByPrimaryKey(Integer id) {
