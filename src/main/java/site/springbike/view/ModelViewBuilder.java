@@ -48,7 +48,11 @@ public class ModelViewBuilder {
                     if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
                         String type = "";
                         if(field.getType().equals(String.class)) {
-                            type = "text";
+                            if (column.name().contains("password")) {
+                                type = "password";
+                            } else {
+                                type = "text";
+                            }
                         }
                         if(field.getType().equals(BigDecimal.class)) {
                             type = "number";
@@ -69,7 +73,11 @@ public class ModelViewBuilder {
                 if(!column.primaryKey() && !column.foreignKey() && column.showInForm()){
                     String type = "";
                     if(field.getType().equals(String.class)) {
-                        type = "text";
+                        if (column.name().contains("password")) {
+                            type = "password";
+                        } else {
+                            type = "text";
+                        }
                     }
                     if(field.getType().equals(BigDecimal.class)) {
                         type = "number";

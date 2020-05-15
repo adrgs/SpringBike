@@ -20,38 +20,39 @@ import java.util.Map;
 
 @Controller
 public class RegisterClientController {
+    public static final String VIEW = "account/register_client";
     public static final String PATH = "/account/register/client";
     public static final String TITLE = "Register Client";
 
     @GetMapping(PATH)
     public String getRegisterClient(Model model) {
         model.addAttribute("title", TITLE);
-        return "account/register_client";
+        return VIEW;
     }
 
-    @PostMapping("/account/register/client")
-    public ModelAndView postLogin(HttpServletRequest request, HttpServletResponse response) {
+    @PostMapping(PATH)
+    public ModelAndView postRegisterClient(HttpServletRequest request, HttpServletResponse response) {
 
         Map<String, String[]> map = request.getParameterMap();
         Client client = new Client();
 
         String email = request.getParameter("email");
         if (email == null || !email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            return ControllerUtils.errorModelAndView(PATH, TITLE, "Invalid email address.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid email address.");
         }
         String username = request.getParameter("username");
         if (username == null || username.length() < 3 || username.length() > 48) {
-            return ControllerUtils.errorModelAndView(PATH, TITLE, "Invalid username length.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.");
         }
         if (!username.matches("^[a-zA-Z0-9_]*$")) {
-            return ControllerUtils.errorModelAndView(PATH, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed");
         }
 
         if (ModelRepository.useModel(client).findByColumnLowerCase("username", request.getParameter("username")) != null) {
-            return ControllerUtils.errorModelAndView(PATH, TITLE, "The username already exists in the database.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "The username already exists in the database.");
         } else {
             if (ModelRepository.useModel(client).findByColumnLowerCase("email", request.getParameter("email")) != null) {
-                return ControllerUtils.errorModelAndView(PATH, TITLE, "The email already exists in the database.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "The email already exists in the database.");
             }
         }
 
@@ -65,7 +66,7 @@ public class RegisterClientController {
                 String[] val = map.get(column.name());
                 if (val == null) continue;
                 if (val.length != 1 && !column.nullable()) {
-                    return ControllerUtils.errorModelAndView(PATH, TITLE, "Required field missing");
+                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
                 }
 
                 try {
@@ -81,7 +82,7 @@ public class RegisterClientController {
             String[] val = map.get(column.name());
             if (val == null) continue;
             if (val.length != 1 && !column.nullable()) {
-                return ControllerUtils.errorModelAndView(PATH, TITLE, "Required field missing");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
             }
 
             try {
@@ -94,7 +95,7 @@ public class RegisterClientController {
         client.setPassword(SBCrypt.hashPassword(client.getPassword()));
         client = (Client) ModelRepository.useModel(client).insertModel();
         if (client == null) {
-            return ControllerUtils.errorModelAndView(PATH, TITLE, "Account creation failed.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Account creation failed.");
         }
 
         return new ModelAndView("redirect:/index"); //success - to be modified to /response or something

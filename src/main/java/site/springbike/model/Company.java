@@ -21,6 +21,8 @@ public final class Company extends User {
     }
 
     public Company() {
+        super();
+        this.setType("Company");
     }
 
     public String getCompanyName() {

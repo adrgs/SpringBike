@@ -14,6 +14,10 @@ public class UserRepository {
             if (SBCrypt.checkPassword(password, user.getPassword())) {
                 return user;
             }
+        } else {
+            if (SBCrypt.checkPassword(password, user.getPassword())) {
+                return user;
+            }
         }
 
         return null;

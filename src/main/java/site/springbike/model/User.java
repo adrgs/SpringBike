@@ -17,7 +17,7 @@ public class User implements SpringBikeModel {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "email_confirmed", isBool = true, showInForm = false)
+    @Column(name = "email_confirmed", isBool = true, hasDefaultValue = true, showInForm = false)
     private Boolean emailConfirmed;
 
     @Column(name = "password")

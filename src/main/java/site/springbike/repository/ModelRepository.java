@@ -147,14 +147,14 @@ public class ModelRepository {
                 sqlQueryBuilder = sqlQueryBuilder.equals();
             }
             sql = sqlQueryBuilder.generate();
+            System.out.println(sql);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, value);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
-
             if (resultSet.next()) {
+                newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
                 Class<?> myClass = model.getClass();
                 if (myClass.getSuperclass() != null) {
                     for (Field field : myClass.getSuperclass().getDeclaredFields()) {
@@ -202,7 +202,7 @@ public class ModelRepository {
     }
 
     public SpringBikeModel findByColumnLowerCase(String columnName, Object value) {
-        return selectByColumn(columnName, value, true, true);
+        return selectByColumn(columnName, value, false, true);
     }
 
     public SpringBikeModel selectByPrimaryKey(Integer id) {
@@ -218,9 +218,8 @@ public class ModelRepository {
             preparedStatement.setObject(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
-
             if (resultSet.next()) {
+                newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
                 Class<?> myClass = model.getClass();
                 if (myClass.getSuperclass() != null) {
                     for (Field field : myClass.getSuperclass().getDeclaredFields()) {

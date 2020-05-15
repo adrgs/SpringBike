@@ -22,6 +22,7 @@ public final class Client extends User {
 
     public Client() {
         super();
+        this.setType("Client");
     }
 
     public String getFirstName() {
