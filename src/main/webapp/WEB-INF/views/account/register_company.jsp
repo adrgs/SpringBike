@@ -25,6 +25,7 @@
                         <%
                             out.print(ModelViewBuilder.useModel(new Company()).addInputs(new Address()).addInputs(new Location()).generateForm(null));
                         %>
+                        <div class="form-validate">${error}</div>
                     </div>
                 </div>
                 <div class="col-lg-3"></div>
