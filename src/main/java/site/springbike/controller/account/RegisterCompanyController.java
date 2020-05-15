@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import site.springbike.model.Address;
 import site.springbike.model.Company;
+import site.springbike.model.Location;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +28,14 @@ public class RegisterCompanyController {
     @PostMapping(PATH)
     public ModelAndView postRegisterCompany(HttpServletRequest request, HttpServletResponse response){
         Map<String,String[]> map = request.getParameterMap();
+        Address address = new Address();
+        Location location = new Location();
         Company company =  new Company();
+
+        String email = request
+
+        //address location company
+
 
 
     }
