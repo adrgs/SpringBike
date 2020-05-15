@@ -16,13 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
-    @GetMapping("/account/login")
+    public static final String VIEW = "account/login";
+    public static final String PATH = "/account/login";
+    public static final String TITLE = "Login";
+
+    @GetMapping(PATH)
     public String getLogin(Model model) {
-        model.addAttribute("title", "Login");
-        return "account/login";
+        model.addAttribute("title", TITLE);
+        return VIEW;
     }
 
-    @PostMapping("/account/login")
+    @PostMapping(PATH)
     public ModelAndView postLogin(HttpServletRequest request, HttpServletResponse response) {
 
         String name = request.getParameter("name");
@@ -30,8 +34,8 @@ public class LoginController {
 
         User user = UserRepository.findByNameAndPassword(name, password);
         if (user == null) {
-            ModelAndView modelAndView = new ModelAndView("/account/login");
-            modelAndView.addObject("title", "Login");
+            ModelAndView modelAndView = new ModelAndView(VIEW);
+            modelAndView.addObject("title", TITLE);
             modelAndView.addObject("error", "The credentials you entered did not match our records. Please double-check and try again.");
             return modelAndView;
         }
