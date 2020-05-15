@@ -85,6 +85,11 @@ public class SQLQueryBuilder {
         return this;
     }
 
+    public SQLQueryBuilder lower(String column) {
+        conditions += " LOWER(" + column + ") ";
+        return this;
+    }
+
     public SQLQueryBuilder equals() {
         conditions += " = ? ";
         return this;

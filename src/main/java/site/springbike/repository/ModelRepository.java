@@ -126,7 +126,7 @@ public class ModelRepository {
         return selectByPrimaryKey(id);
     }
 
-    private SpringBikeModel selectByColumn(String columnName, Object value, boolean like) {
+    private SpringBikeModel selectByColumn(String columnName, Object value, boolean like, boolean lower) {
         Connection connection = null;
         SpringBikeModel newModel = null;
         try {
@@ -134,11 +134,19 @@ public class ModelRepository {
 
             String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
             String sql;
-            if (like) {
-                sql = new SQLQueryBuilder().useModel(model).select().where().column(columnName).like().generate();
+            SQLQueryBuilder sqlQueryBuilder = new SQLQueryBuilder().useModel(model);
+            sqlQueryBuilder = sqlQueryBuilder.select().where();
+            if (lower) {
+                sqlQueryBuilder = sqlQueryBuilder.lower(columnName);
             } else {
-                sql = new SQLQueryBuilder().useModel(model).select().where().column(columnName).equals().generate();
+                sqlQueryBuilder = sqlQueryBuilder.column(columnName);
             }
+            if (like) {
+                sqlQueryBuilder = sqlQueryBuilder.like();
+            } else {
+                sqlQueryBuilder = sqlQueryBuilder.equals();
+            }
+            sql = sqlQueryBuilder.generate();
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, value);
@@ -182,11 +190,19 @@ public class ModelRepository {
     }
 
     public SpringBikeModel findWildcardByColumn(String columnName, String value) {
-        return selectByColumn(columnName, value, true);
+        return selectByColumn(columnName, value, true, false);
     }
 
     public SpringBikeModel findByColumn(String columnName, Object value) {
-        return selectByColumn(columnName, value, true);
+        return selectByColumn(columnName, value, true, false);
+    }
+
+    public SpringBikeModel findWildcardByColumnLowerCase(String columnName, String value) {
+        return selectByColumn(columnName, value, true, true);
+    }
+
+    public SpringBikeModel findByColumnLowerCase(String columnName, Object value) {
+        return selectByColumn(columnName, value, true, true);
     }
 
     public SpringBikeModel selectByPrimaryKey(Integer id) {
