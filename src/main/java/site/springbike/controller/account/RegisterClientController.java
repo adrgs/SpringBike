@@ -56,40 +56,8 @@ public class RegisterClientController {
             }
         }
 
-        Class<?> myClass = client.getClass();
-        if (myClass.getSuperclass() != null) {
-            for (Field field : myClass.getSuperclass().getDeclaredFields()) {
-                field.setAccessible(true);
-                Column column = field.getAnnotation(Column.class);
-                if (column == null) continue;
-
-                String[] val = map.get(column.name());
-                if (val == null) continue;
-                if (val.length != 1 && !column.nullable()) {
-                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
-                }
-
-                try {
-                    field.set(client, val[0]);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        for (Field field : myClass.getDeclaredFields()) {
-            Column column = field.getAnnotation(Column.class);
-            field.setAccessible(true);
-            String[] val = map.get(column.name());
-            if (val == null) continue;
-            if (val.length != 1 && !column.nullable()) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
-            }
-
-            try {
-                field.set(client, val[0]);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+        if (!ControllerUtils.parseModelFromInput(client, map)) {
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
         }
 
         client.setPassword(SBCrypt.hashPassword(client.getPassword()));
