@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RegisterCompanyController {
-    @GetMapping("/account/register/company")
+    public static final String VIEW = "account/register_client";
+    public static final String PATH = "/account/register/client";
+    public static final String TITLE = "Register Client";
+
+    @GetMapping(PATH)
     public String registerCompany(Model model) {
-        model.addAttribute("title", "Register Company");
-        return "account/register_company";
+        model.addAttribute("title", TITLE);
+        return VIEW;
     }
 }
