@@ -19,9 +19,12 @@
 
     if (cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
-            cookie = cookies[i];
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
+            if (!cookies[i].getName().equals("JSESSIONID")) {
+                cookie = cookies[i];
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
         }
     }
 %>
@@ -43,7 +46,9 @@
     </section>
 </main>
 <script>
-    document.location = "/index";
+    setTimeout(function () {
+        document.location = "/index";
+    }, 5000);
 </script>
 <%@ include file="../templates/footer.jsp" %>
 </body>

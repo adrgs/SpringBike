@@ -10,13 +10,16 @@
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <a href="index" class="logo mr-auto"><img src="/img/logo.png" alt="" class="img-fluid"></a>
+        <a href="/index" class="logo mr-auto"><img src="/img/logo.png" alt="" class="img-fluid"></a>
         <!-- Uncomment below if you prefer to use text as a logo -->
         <!-- <h1 class="logo mr-auto"><a href="index.html">Butterfly</a></h1> -->
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
                 <li class="${title.equals("Index") ? "active" : ""}"><a href="/index">Home</a></li>
+                <%
+                    if (request.getAttribute("user") == null) {
+                %>
                 <li class="${title.equals("Login") ? "active" : ""}"><a href="/account/login">Login</a></li>
                 <li class="drop-down"><a href="">Register</a>
                     <ul>
@@ -26,6 +29,14 @@
                                 href="/account/register/company">Company</a></li>
                     </ul>
                 </li>
+                <%
+                } else {
+                %>
+                <li><a href="#">Hello, ${user.getUsername()}</a></li>
+                <li class="${title.equals("Logout") ? "active" : ""}"><a href="/account/logout">Logout</a></li>
+                <%
+                    }
+                %>
             </ul>
         </nav><!-- .nav-menu -->
 
