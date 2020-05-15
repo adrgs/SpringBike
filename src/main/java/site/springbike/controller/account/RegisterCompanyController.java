@@ -38,6 +38,13 @@ public class RegisterCompanyController {
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid email address.");
         }
 
+        String username = request.getParameter("username");
+        if (username == null || username.length() < 3 || username.length() > 48) {
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.");
+        }
+
+
+
         //address location company
 
 
