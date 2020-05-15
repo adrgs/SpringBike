@@ -55,7 +55,18 @@ public class RegisterCompanyController {
             }
         }
 
+        if(!ControllerUtils.parseModelFromInput(address,map))
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
+        address = (Address) ModelRepository.useModel(address).insertModel();
+        if(address.getId()==null)
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid address");
 
+        if(!ControllerUtils.parseModelFromInput(location,map))
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
+        location.setIdAddress(address.getId());
+        location = (Location) ModelRepository.useModel(address).insertModel();
+        if(location.getId()==null)
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid location");
 
 
 
