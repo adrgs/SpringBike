@@ -1,4 +1,5 @@
-<%--
+<%@ page import="site.springbike.view.InventoryBikeTypeView" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: adragos
   Date: 15/05/2020
@@ -15,16 +16,22 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div style="margin-top: 50px">
                         <h1 style="text-align: center;">Manage bikes</h1>
                         <a href="/company/add_bike">Add bike</a>
 
+                        <%
+                            for (InventoryBikeTypeView bikeView : (List<InventoryBikeTypeView>) request.getAttribute("bikeViews")) {
+                        %>
+                        <%= bikeView.toString() %>
+                        <%
+                            }
+                        %>
+
                         <div class="form-validate">${error}</div>
                     </div>
                 </div>
-                <div class="col-lg-3"></div>
             </div>
         </div>
     </section>

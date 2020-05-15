@@ -52,7 +52,7 @@ public class InventoryBikeTypeView {
         builder.append(inventory.getId());
         builder.append("\">Delete bike</a>");
 
-        builder.append("</div>");
+        builder.append("</div><br/>");
         return builder.toString();
     }
 

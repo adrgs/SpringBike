@@ -30,7 +30,7 @@ public class ManageBikesController {
         model.addAttribute("title", TITLE);
         User user = ControllerUtils.checkAuthentication(request);
 
-        if (user == null || user.getType() != "Company") {
+        if (user == null || !user.getType().equals("Company")) {
             return "redirect:/index";
         }
 
