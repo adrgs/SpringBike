@@ -64,9 +64,16 @@ public class RegisterCompanyController {
         if(!ControllerUtils.parseModelFromInput(location,map))
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
         location.setIdAddress(address.getId());
-        location = (Location) ModelRepository.useModel(address).insertModel();
+        location = (Location) ModelRepository.useModel(location).insertModel();
         if(location.getId()==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid location");
+
+        if(!ControllerUtils.parseModelFromInput(company,map))
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
+        company.setIdLocation(location.getId());
+        company = (Company) ModelRepository.useModel(company).insertModel();
+        if(company.getId()==null)
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid company");
 
 
 
