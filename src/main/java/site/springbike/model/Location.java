@@ -10,7 +10,7 @@ public final class Location implements SpringBikeModel {
     @Column(name = "id", primaryKey = true)
     private Integer id;
 
-    @Column(name = "id_company", foreignKey = true)
+    @Column(name = "id_company", foreignKey = true, nullable = true)
     private Integer idCompany;
 
     @Column(name = "id_address", foreignKey = true)
