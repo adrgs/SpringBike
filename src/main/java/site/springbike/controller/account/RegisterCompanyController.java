@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.controller.ControllerUtils;
+import site.springbike.crypto.SBCrypt;
 import site.springbike.model.Address;
 import site.springbike.model.Company;
 import site.springbike.model.Location;
@@ -71,13 +72,13 @@ public class RegisterCompanyController {
         if(!ControllerUtils.parseModelFromInput(company,map))
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing");
         company.setIdLocation(location.getId());
+
+        company.setPassword(SBCrypt.hashPassword(company.getPassword()));
         company = (Company) ModelRepository.useModel(company).insertModel();
         if(company.getId()==null)
             return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid company");
 
 
-
-        //address location company
 
 
 
