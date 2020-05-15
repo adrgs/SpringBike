@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import site.springbike.cache.UserCacheManager;
 import site.springbike.controller.ControllerUtils;
-import site.springbike.model.Bike;
-import site.springbike.model.Inventory;
-import site.springbike.model.SpringBikeModel;
-import site.springbike.model.User;
+import site.springbike.model.*;
 import site.springbike.repository.ModelRepository;
 import site.springbike.repository.UserRepository;
 import site.springbike.session.SessionUtils;
@@ -42,12 +39,15 @@ public class ManageBikesController {
         for (SpringBikeModel inventory : inventoryList) {
             Inventory inv = (Inventory) inventory;
             if (inv == null) continue;
-            ;
-            Bike bike = ModelRepository.useModel(new Bike()).selectByPrimaryKey(inv.get);
+            Bike bike = (Bike) ModelRepository.useModel(new Bike()).selectByPrimaryKey(inv.getIdBike());
+            if (bike == null) continue;
+            BikeType bikeType = (BikeType) ModelRepository.useModel(new BikeType()).selectByPrimaryKey(bike.getIdType());
+            if (bikeType == null) continue;
+
+            inventoryBikeTypeViews.add(new InventoryBikeTypeView(inv, bike, bikeType));
         }
-
-
         model.addAttribute("user", user);
+        model.addAttribute("bikeViews", inventoryBikeTypeViews);
         return VIEW;
     }
 
