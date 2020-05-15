@@ -94,7 +94,7 @@ public class ModelRepository {
                     }
                 }
             }
-            System.out.println(sql);
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             int i = 0;
             for (HashMap.Entry<Column, Object> entry : columnValueMap.entrySet()) {
@@ -147,7 +147,6 @@ public class ModelRepository {
                 sqlQueryBuilder = sqlQueryBuilder.equals();
             }
             sql = sqlQueryBuilder.generate();
-            System.out.println(sql);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, value);
