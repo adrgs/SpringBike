@@ -22,13 +22,13 @@ public class AddBikeController {
 
     @GetMapping(PATH)
     public String getAddBike(Model model, HttpServletRequest request) {
-
-        model.addAttribute("title", TITLE);
         User user = ControllerUtils.checkAuthentication(request);
 
         if (user == null || !user.getType().equals("Company")) {
             return "redirect:/index";
         }
+        model.addAttribute("title", TITLE);
+        model.addAttribute("user", user);
 
         return VIEW;
     }
@@ -49,12 +49,15 @@ public class AddBikeController {
 
         for (int i = 0; i < quantity; i++) {
             BikeType bikeType = new BikeType();
-            if (!ControllerUtils.parseModelFromInput(bikeType, map)) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
-            }
-            bikeType = (BikeType) ModelRepository.useModel(bikeType).insertModel();
+            bikeType = (BikeType) ModelRepository.useModel(bikeType).findByColumn("type", request.getParameter("type"));
             if (bikeType == null) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+                if (!ControllerUtils.parseModelFromInput(bikeType, map)) {
+                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+                }
+                bikeType = (BikeType) ModelRepository.useModel(bikeType).insertModel();
+                if (bikeType == null) {
+                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+                }
             }
             Bike bike = new Bike();
             if (!ControllerUtils.parseModelFromInput(bike, map)) {
@@ -78,7 +81,7 @@ public class AddBikeController {
             }
         }
 
-        return new ModelAndView("redirect:/company/manage_bikes"); //success - to be modified to /dashboard or something
+        return new ModelAndView("redirect:/company/manage_bikes");
     }
 
 }

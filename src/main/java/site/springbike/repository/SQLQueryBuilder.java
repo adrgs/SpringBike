@@ -100,6 +100,16 @@ public class SQLQueryBuilder {
         return this;
     }
 
+    public SQLQueryBuilder and() {
+        conditions += " AND ";
+        return this;
+    }
+
+    public SQLQueryBuilder or() {
+        conditions += " or ";
+        return this;
+    }
+
     public SQLQueryBuilder select(String... columns) {
         sql = "SELECT ";
         boolean hasColumns = false;

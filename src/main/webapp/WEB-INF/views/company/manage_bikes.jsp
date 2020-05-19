@@ -20,15 +20,19 @@
                     <div style="margin-top: 50px">
                         <h1 style="text-align: center;">Manage bikes</h1>
                         <a href="/company/add_bike">Add bike</a>
-
+                        <div class="container">
+                            <div class="row">
                         <%
                             for (InventoryBikeTypeView bikeView : (List<InventoryBikeTypeView>) request.getAttribute("bikeViews")) {
                         %>
-                        <%= bikeView.toString() %>
+                                <div class="col-lg-3">
+                                    <%= bikeView.toString() %>
+                                </div>
                         <%
                             }
                         %>
-
+                            </div>
+                        </div>
                         <div class="form-validate">${error}</div>
                     </div>
                 </div>

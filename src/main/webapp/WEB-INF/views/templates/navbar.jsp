@@ -43,7 +43,7 @@
                         href="/client/transaction_history">Transaction history</a></li>
                 <li class="${title.equals("My rented bikes") ? "active" : ""}"><a href="/client/rented_bikes">My rented
                     bikes</a></li>
-                <li><a href="#">Balance: ${user.getBalance()}</a></li>
+                <li><a href="/client/balance">Balance: ${user.getBalance()}</a></li>
                 <%
                 } else if (user.getType().equals("Company")) {
                 %>

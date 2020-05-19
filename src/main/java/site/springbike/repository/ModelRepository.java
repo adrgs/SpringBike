@@ -219,6 +219,73 @@ public class ModelRepository {
         return modelList.get(0);
     }
 
+    public List<SpringBikeModel> selectByColumns(HashMap<String, Object> columnsValues) {
+        Connection connection = null;
+        SpringBikeModel newModel = null;
+        List<SpringBikeModel> newModels = new ArrayList<>();
+        try {
+            connection = DatabaseManager.getConnection();
+
+            String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
+            String sql;
+            SQLQueryBuilder sqlQueryBuilder = new SQLQueryBuilder().useModel(model);
+            sqlQueryBuilder = sqlQueryBuilder.select().where();
+            int i = 0;
+            for (HashMap.Entry<String, Object> entry : columnsValues.entrySet()) {
+                sqlQueryBuilder.column(entry.getKey());
+                sqlQueryBuilder.equals();
+                if (i < columnsValues.size() - 1) {
+                    sqlQueryBuilder.and();
+                }
+                i += 1;
+            }
+            sql = sqlQueryBuilder.generate();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            i = 0;
+            for (HashMap.Entry<String, Object> entry : columnsValues.entrySet()) {
+                preparedStatement.setObject(i + 1, entry.getValue());
+                i++;
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
+                Class<?> myClass = model.getClass();
+                if (myClass.getSuperclass() != null) {
+                    for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                        field.setAccessible(true);
+                        Column column = field.getAnnotation(Column.class);
+                        if (column == null) continue;
+
+                        if (column.isBool()) {
+                            field.set(newModel, resultSet.getBoolean(column.name()));
+                        } else {
+                            field.set(newModel, resultSet.getObject(column.name()));
+                        }
+                    }
+                }
+                for (Field field : myClass.getDeclaredFields()) {
+                    Column column = field.getAnnotation(Column.class);
+                    field.setAccessible(true);
+                    if (column.isBool()) {
+                        field.set(newModel, resultSet.getBoolean(column.name()));
+                    } else {
+                        field.set(newModel, resultSet.getObject(column.name()));
+                    }
+                }
+                newModels.add(newModel);
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return newModels;
+        }
+
+        return newModels;
+    }
+
     public SpringBikeModel selectByPrimaryKey(Integer id) {
         Connection connection = null;
         SpringBikeModel newModel = null;

@@ -28,19 +28,19 @@ public class InventoryBikeTypeView {
         builder.append(HtmlUtils.htmlEscape(bike.getAvatarURL()));
         builder.append("\" onerror=\"this.src='/img/default_bike.png'\" />");
 
-        builder.append("<div>Bike name:");
+        builder.append("<div>Bike name: ");
         builder.append(HtmlUtils.htmlEscape(bike.getName()));
         builder.append("</div>");
 
-        builder.append("<div>Bike price:");
+        builder.append("<div>Bike price: ");
         builder.append(HtmlUtils.htmlEscape(bike.getPrice().toString()));
         builder.append("</div>");
 
-        builder.append("<div>Rent price:");
+        builder.append("<div>Rent price: ");
         builder.append(HtmlUtils.htmlEscape(inventory.getRentPriceHour().toString()));
         builder.append(" RON/h</div>");
 
-        builder.append("<div>Description:");
+        builder.append("<div>Description: ");
         builder.append(HtmlUtils.htmlEscape(bike.getDescription()));
         builder.append("</div>");
 

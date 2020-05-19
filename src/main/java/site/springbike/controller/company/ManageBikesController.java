@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,10 @@ public class ManageBikesController {
         }
 
         List<InventoryBikeTypeView> inventoryBikeTypeViews = new ArrayList<>();
-        List<SpringBikeModel> inventoryList = ModelRepository.useModel(new Inventory()).getAllByColumn("id_company", user.getId());
+        List<SpringBikeModel> inventoryList = ModelRepository.useModel(new Inventory()).selectByColumns(new HashMap<String, Object>() {{
+            put("id_company", user.getId());
+            put("deleted", false);
+        }});
         for (SpringBikeModel inventory : inventoryList) {
             Inventory inv = (Inventory) inventory;
             if (inv == null) continue;

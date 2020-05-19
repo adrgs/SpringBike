@@ -1,4 +1,4 @@
-<%--
+<%@ page import="site.springbike.controller.ControllerUtils" %><%--
   Created by IntelliJ IDEA.
   User: adragos
   Date: 14/05/2020
@@ -9,6 +9,9 @@
 <html>
 <%@ include file="templates/header.jsp" %>
 <body>
+<%
+    request.setAttribute("user", ControllerUtils.checkAuthentication(request));
+%>
 <%@ include file="templates/navbar.jsp" %>
 
 <main id="main">
