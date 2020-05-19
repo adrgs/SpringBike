@@ -64,7 +64,7 @@
 
     <div class="container py-4">
         <div class="copyright">
-            &copy; Copyright <strong><span>Butterfly</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>SpringBike</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
