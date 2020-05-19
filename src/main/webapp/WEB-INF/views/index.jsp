@@ -165,7 +165,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="">Detailed listings</a></h4>
+                        <h4 class="title"><a href="">Detailed Listings</a></h4>
                         <p class="description">Key details like bike types,availability and more in a single view</p>
                     </div>
                 </div>
@@ -181,9 +181,8 @@
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
+                        <h4 class="title"><a href="">Quick Search</a></h4>
+                        <p class="description">Mention the address and the lease period to view the available bikes</p>
                     </div>
                 </div>
 
