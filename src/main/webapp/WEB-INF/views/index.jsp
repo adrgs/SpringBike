@@ -25,13 +25,12 @@
 
                 <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>What is SpringBike?</h3>
-                    <p>SpringBike is a versatile app that connects bike rental companies to ride seekers</p>
+                    <p>SpringBike is a versatile app that connects bike rental companies to ride seekers.</p>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">Easy access</a></h4>
+                        <p class="description">Search for bikes,book and make payment,then just enjoy the ride.</p>
                     </div>
 
                     <div class="icon-box">
