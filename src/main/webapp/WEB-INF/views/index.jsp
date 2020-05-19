@@ -181,16 +181,15 @@
                     <div class="icon-box">
                         <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
                         <h4 class="title"><a href="">Quick Search</a></h4>
-                        <p class="description">Mention the address and the lease period to view the available bikes</p>
+                        <p class="description">Mention the address, the start and end date to view the available bikes</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Available Anywhere</a></h4>
+                        <p class="description">Can be launched in any target market around the world</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
