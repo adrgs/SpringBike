@@ -196,9 +196,8 @@
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
-                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                            tempore, cum soluta nobis est eligendi</p>
+                        <h4 class="title"><a href="">Easy Start</a></h4>
+                        <p class="description">Getting started quickly with signup and login options for both clients and companies</p>
                     </div>
                 </div>
             </div>
