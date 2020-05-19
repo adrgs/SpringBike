@@ -41,9 +41,9 @@
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Dine Pad</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis
-                            odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <h4 class="title"><a href="">Friendly interface</a></h4>
+                        <p class="description">Makes it easy for both clients who want to rent a bike and companies
+                        to manage their inventories.</p>
                     </div>
 
                 </div>
@@ -58,7 +58,6 @@
 
             <div class="text-center title">
                 <h3>What we have achieved so far</h3>
-                <p>Iusto et labore modi qui sapiente xpedita tempora et aut non ipsum consequatur illo.</p>
             </div>
 
             <div class="row counters">
