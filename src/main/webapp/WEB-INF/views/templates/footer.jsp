@@ -14,7 +14,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Butterfly</h3>
+                    <h3>SpringBike</h3>
                     <p>
                         A108 Adam Street <br>
                         New York, NY 535022<br>
