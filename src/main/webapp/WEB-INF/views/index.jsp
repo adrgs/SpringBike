@@ -165,9 +165,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat tarad limino ata</p>
+                        <h4 class="title"><a href="">Detailed listings</a></h4>
+                        <p class="description">Key details like bike types,availability and more in a single view</p>
                     </div>
                 </div>
 
