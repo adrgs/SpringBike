@@ -35,9 +35,8 @@
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Welcome coupons</a></h4>
+                        <p class="description">Sign up now and get a discount for your first rent.</p>
                     </div>
 
                     <div class="icon-box">
