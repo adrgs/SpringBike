@@ -157,16 +157,15 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">Simple Browsing</a></h4>
+                        <p class="description">Smooth browsing experience for users from the available options</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="">Detailed Listings</a></h4>
-                        <p class="description">Key details like bike types, availability and more in a single view</p>
+                        <h4 class="title"><a href="">More Info</a></h4>
+                        <p class="description">Options for companies to track their bikes and get detailed reports</p>
                     </div>
                 </div>
 
