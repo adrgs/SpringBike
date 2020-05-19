@@ -166,16 +166,15 @@
                     <div class="icon-box">
                         <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
                         <h4 class="title"><a href="">Detailed Listings</a></h4>
-                        <p class="description">Key details like bike types,availability and more in a single view</p>
+                        <p class="description">Key details like bike types, availability and more in a single view</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
+                        <h4 class="title"><a href="">Detailed Listings</a></h4>
+                        <p class="description">Key details like bike types, availability and more in a single view</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
