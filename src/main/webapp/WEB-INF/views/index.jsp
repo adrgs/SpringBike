@@ -42,8 +42,7 @@
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
                         <h4 class="title"><a href="">Friendly interface</a></h4>
-                        <p class="description">Makes it easy for both clients who want to rent a bike and companies
-                        to manage their inventories.</p>
+                        <p class="description">Makes it easy for both clients who want to rent a bike and companies to manage their inventories.</p>
                     </div>
 
                 </div>
