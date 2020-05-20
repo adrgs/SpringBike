@@ -14,7 +14,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Butterfly</h3>
+                    <h3>SpringBike</h3>
                     <p>
                         A108 Adam Street <br>
                         New York, NY 535022<br>
@@ -48,7 +48,6 @@
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -64,7 +63,7 @@
 
     <div class="container py-4">
         <div class="copyright">
-            &copy; Copyright <strong><span>Butterfly</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>SpringBike</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->

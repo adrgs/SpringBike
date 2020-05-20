@@ -24,30 +24,25 @@
                 </div>
 
                 <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                    <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                    <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima
-                        temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam
-                        sint et id nulla tenetur. Suscipit aut voluptate.</p>
+                    <h3>What is SpringBike?</h3>
+                    <p>SpringBike is a versatile app that connects bike rental companies to ride seekers.</p>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">Easy access</a></h4>
+                        <p class="description">Search for bikes,book and make payment,then just enjoy the ride.</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Welcome coupons</a></h4>
+                        <p class="description">Sign up now and get a discount for your first rent.</p>
                     </div>
 
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-atom"></i></div>
-                        <h4 class="title"><a href="">Dine Pad</a></h4>
-                        <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis
-                            odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                        <h4 class="title"><a href="">Friendly interface</a></h4>
+                        <p class="description">Makes it easy for both clients who want to rent a bike and companies to manage their inventories.</p>
                     </div>
 
                 </div>
@@ -62,7 +57,6 @@
 
             <div class="text-center title">
                 <h3>What we have achieved so far</h3>
-                <p>Iusto et labore modi qui sapiente xpedita tempora et aut non ipsum consequatur illo.</p>
             </div>
 
             <div class="row counters">
@@ -157,60 +151,51 @@
 
             <div class="section-title">
                 <h2>Services</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                    fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">Simple Browsing</a></h4>
+                        <p class="description">Smooth browsing experience for users from the available options</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat tarad limino ata</p>
+                        <h4 class="title"><a href="">More Info</a></h4>
+                        <p class="description">Options for companies to track their bikes and get detailed reports</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
+                        <h4 class="title"><a href="">Detailed Listings</a></h4>
+                        <p class="description">Key details like bike types, availability and more in a single view</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
+                        <h4 class="title"><a href="">Quick Search</a></h4>
+                        <p class="description">Mention the address, the start and end date to view the available bikes</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Available Anywhere</a></h4>
+                        <p class="description">Can be launched in any target market around the world</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
                     <div class="icon-box">
                         <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
-                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                            tempore, cum soluta nobis est eligendi</p>
+                        <h4 class="title"><a href="">Easy Start</a></h4>
+                        <p class="description">Getting started quickly with signup and login options for both clients and companies</p>
                     </div>
                 </div>
             </div>
@@ -224,9 +209,6 @@
 
             <div class="section-title">
                 <h2>Portfolio</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                    fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
             <div class="row">
@@ -392,62 +374,30 @@
                     <img src="/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                     <h3>Saul Goodman</h3>
                     <h4>Ceo &amp; Founder</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
-                        Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
                 </div>
 
                 <div class="testimonial-item">
                     <img src="/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
                     <h3>Sara Wilsson</h3>
                     <h4>Designer</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram
-                        malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
                 </div>
 
                 <div class="testimonial-item">
                     <img src="/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
                     <h3>Jena Karlis</h3>
                     <h4>Store Owner</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis
-                        minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
                 </div>
 
                 <div class="testimonial-item">
                     <img src="/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
                     <h3>Matt Brandon</h3>
                     <h4>Freelancer</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim
-                        velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum
-                        veniam.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
                 </div>
 
                 <div class="testimonial-item">
                     <img src="/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
                     <h3>John Larson</h3>
                     <h4>Entrepreneur</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim
-                        culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum
-                        quid.
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
                 </div>
 
             </div>
@@ -461,9 +411,6 @@
 
             <div class="section-title">
                 <h2>Team</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                    fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
             <div class="row">
@@ -551,9 +498,6 @@
 
             <div class="section-title">
                 <h2>Gallery</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                    fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
             <div class="row no-gutters">
@@ -633,9 +577,6 @@
 
             <div class="section-title">
                 <h2>Contact</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                    fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
             <div>
