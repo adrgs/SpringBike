@@ -29,6 +29,7 @@ public class ControllerUtils {
     public static User checkAuthentication(HttpServletRequest request) {
         if (request == null) return null;
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) return null;
         Cookie sessionCookie = null;
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("session")) {
