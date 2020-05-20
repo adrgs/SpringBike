@@ -98,16 +98,15 @@ public class RentedBikesController {
             Lease lease = (Lease) iter;
             if (lease == null) continue;
             if (!lease.getIdClient().equals(user.getId())) continue;
-            ;
 
             ClientRentedBikeView rentedBikeView = new ClientRentedBikeView();
             rentedBikeView.setToReturn(true);
             rentedBikeView.setLease(lease);
 
-            if (!inventoryHashMap.containsKey(lease.getIdCompany())) {
-                inventoryHashMap.put(lease.getIdCompany(), (Inventory) ModelRepository.useModel(new Inventory()).selectByPrimaryKey(lease.getIdCompany()));
+            if (!inventoryHashMap.containsKey(lease.getIdInventory())) {
+                inventoryHashMap.put(lease.getIdInventory(), (Inventory) ModelRepository.useModel(new Inventory()).selectByPrimaryKey(lease.getIdInventory()));
             }
-            Inventory inventory = inventoryHashMap.get(lease.getIdCompany());
+            Inventory inventory = inventoryHashMap.get(lease.getIdInventory());
             rentedBikeView.setInventory(inventory);
 
             if (!companyHashMap.containsKey(inventory.getIdCompany())) {

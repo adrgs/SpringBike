@@ -55,6 +55,16 @@ public class RentBikeController {
         if (inventory == null) {
             return ControllerUtils.errorModelAndView("redirect:/" + VIEW, TITLE, "Invalid bike.", user);
         }
+
+        Blacklist blacklist = new Blacklist();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id_company", inventory.getIdCompany());
+        map.put("id_client", user.getId());
+        blacklist = (Blacklist) ModelRepository.useModel(blacklist).findByColumns(map);
+        if (blacklist != null) {
+            return ControllerUtils.errorModelAndView("redirect:/" + VIEW, TITLE, "User is blacklisted.", user);
+        }
+
         BigDecimal sum = inventory.getRentPriceHour().multiply(new BigDecimal(hours));
         if (sum.compareTo(BigDecimal.ZERO) <= 0) {
             return ControllerUtils.errorModelAndView("redirect:/" + VIEW, TITLE, "Invalid number of hours.", user);
@@ -124,12 +134,28 @@ public class RentBikeController {
         HashMap<Integer, Address> addressHashMap = new HashMap<>();
         HashMap<Integer, Bike> bikeHashMap = new HashMap<>();
         HashMap<Integer, BikeType> bikeTypeHashMap = new HashMap<>();
+        HashMap<Integer, Boolean> blacklistHashMap = new HashMap<>();
 
         List<RentBikeView> bikeViews = new ArrayList<>();
 
         for (SpringBikeModel iter : inventoryList) {
             Inventory inventory = (Inventory) iter;
             if (inventory == null) continue;
+            if (blacklistHashMap.get(inventory.getIdCompany()) != null) {
+                if (blacklistHashMap.get(inventory.getIdCompany()) == true)
+                    continue;
+            } else {
+                blacklistHashMap.put(inventory.getIdCompany(), false);
+                Blacklist blacklist = new Blacklist();
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id_company", inventory.getIdCompany());
+                map.put("id_client", user.getId());
+                blacklist = (Blacklist) ModelRepository.useModel(blacklist).findByColumns(map);
+                if (blacklist != null) {
+                    blacklistHashMap.put(inventory.getIdCompany(), true);
+                    continue;
+                }
+            }
 
             RentBikeView rentBikeView = new RentBikeView();
             rentBikeView.setInventory(inventory);

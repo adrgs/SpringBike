@@ -67,10 +67,10 @@ public class TransactionHistoryController {
             Transaction transaction = transactionHashMap.get(lease.getId());
             rentedBikeView.setTransaction(transaction);
 
-            if (!inventoryHashMap.containsKey(lease.getIdCompany())) {
-                inventoryHashMap.put(lease.getIdCompany(), (Inventory) ModelRepository.useModel(new Inventory()).selectByPrimaryKey(lease.getIdCompany()));
+            if (!inventoryHashMap.containsKey(lease.getIdInventory())) {
+                inventoryHashMap.put(lease.getIdInventory(), (Inventory) ModelRepository.useModel(new Inventory()).selectByPrimaryKey(lease.getIdInventory()));
             }
-            Inventory inventory = inventoryHashMap.get(lease.getIdCompany());
+            Inventory inventory = inventoryHashMap.get(lease.getIdInventory());
             rentedBikeView.setInventory(inventory);
 
             if (!companyHashMap.containsKey(inventory.getIdCompany())) {
