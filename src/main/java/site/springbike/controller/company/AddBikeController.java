@@ -50,6 +50,7 @@ public class AddBikeController {
             BikeType bikeType = new BikeType();
             bikeType = (BikeType) ModelRepository.useModel(bikeType).findByColumn("type", request.getParameter("type"));
             if (bikeType == null) {
+                bikeType = new BikeType();
                 if (!ControllerUtils.parseModelFromInput(bikeType, map)) {
                     return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.", user);
                 }
