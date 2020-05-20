@@ -7,7 +7,7 @@
 
 
 
-### Live demo: https://springbike.site
+### Live demo: http://springbike.site
 
 ### Echipa:
 
