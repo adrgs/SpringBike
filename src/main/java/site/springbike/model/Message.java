@@ -20,13 +20,13 @@ public final class Message implements SpringBikeModel{
     @Column(name = "subject")
     private String subject;
 
-    @Column(name = "body")
+    @Column(name = "body", showInForm = false)
     private String body;
 
-    @Column(name = "date_created",hasDefaultValue = true)
+    @Column(name = "date_created", hasDefaultValue = true, showInForm = false)
     private Timestamp dateCreated;
 
-    @Column(name = "email",hasDefaultValue = true,isBool = true)
+    @Column(name = "email", hasDefaultValue = true, isBool = true, showInForm = false)
     private Boolean email;
 
     public Message(Integer id, Integer idUserSender, Integer idUserReceiver, String subject, String body, Timestamp dateCreated, Boolean email) {

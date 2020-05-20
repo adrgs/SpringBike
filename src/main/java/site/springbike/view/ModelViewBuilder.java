@@ -23,7 +23,9 @@ public class ModelViewBuilder {
     }
 
     public static ModelViewBuilder useModel(SpringBikeModel model) {
-        RepositoryUtils.checkIfSQLObject(model);
+        if (model != null) {
+            RepositoryUtils.checkIfSQLObject(model);
+        }
         return new ModelViewBuilder(model, false);
     }
 
@@ -38,8 +40,14 @@ public class ModelViewBuilder {
     }
 
     public ModelViewBuilder addInput(String name, String type, boolean required, String value) {
-        this.fields += "<label for=\"" + name + "\">" + getLabelFromColumn(name) + (!required ? "" : "*") + "</label><br/>";
-        this.fields += "<input " + (value == null || value.isBlank() ? "" : "value=\"" + value + "\"") + " class=\"form-control\" type=\"" + type + "\" id=\"" + name + "\" name=\"" + name + "\" " + (!required ? "" : "required") + "><br/>";
+        if (!type.equals("hidden")) {
+            this.fields += "<label for=\"" + name + "\">" + getLabelFromColumn(name) + (!required ? "" : "*") + "</label><br/>";
+        }
+        if (!type.equals("textarea")) {
+            this.fields += "<input " + (value == null || value.isBlank() ? "" : "value=\"" + value + "\"") + " class=\"form-control\" type=\"" + type + "\" id=\"" + name + "\" name=\"" + name + "\" " + (!required ? "" : "required") + "/><br/>";
+        } else {
+            this.fields += "<textarea class=\"form-control\" " + "\" id=\"" + name + "\" name=\"" + name + "\" " + (!required ? "" : "required") + ">" + (value == null || value.isBlank() ? "" : value) + "</textarea><br/>";
+        }
         return this;
     }
 
@@ -54,6 +62,7 @@ public class ModelViewBuilder {
     }
 
     public String generateInputs(SpringBikeModel model, boolean editForm) {
+        if (model == null) return "";
         String inputs = "";
         Class<?> myClass = model.getClass();
 

@@ -55,7 +55,6 @@ public class TransactionHistoryController {
             Lease lease = (Lease) iter;
             if (lease == null) continue;
             if (!lease.getIdClient().equals(user.getId())) continue;
-            ;
 
             ClientRentedBikeView rentedBikeView = new ClientRentedBikeView();
             rentedBikeView.setToReturn(false);
@@ -103,7 +102,7 @@ public class TransactionHistoryController {
             BikeType type = bikeTypeHashMap.get(bike.getIdType());
             rentedBikeView.setType(type);
 
-            bikeViews.add(rentedBikeView);
+            bikeViews.add(0, rentedBikeView);
         }
 
         request.setAttribute("bikeViews", bikeViews);
