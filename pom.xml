@@ -80,6 +80,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>springbike</finalName>
 	</build>
 
 </project>
