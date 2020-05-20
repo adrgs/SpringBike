@@ -10,19 +10,15 @@ public class CompanyRentedBikeView {
     private Inventory inventory;
     private Bike bike;
     private BikeType type;
-    private Location location;
-    private Address address;
     private Lease lease;
     private Transaction transaction;
     private boolean history;
 
-    public CompanyRentedBikeView(Client client, Inventory inventory, Bike bike, BikeType type, Location location, Address address, Lease lease, Transaction transaction, boolean history) {
+    public CompanyRentedBikeView(Client client, Inventory inventory, Bike bike, BikeType type, Lease lease, Transaction transaction, boolean history) {
         this.client = client;
         this.inventory = inventory;
         this.bike = bike;
         this.type = type;
-        this.location = location;
-        this.address = address;
         this.lease = lease;
         this.transaction = transaction;
         this.history = history;
@@ -55,7 +51,9 @@ public class CompanyRentedBikeView {
 
         builder.append("<div class=\"col-lg-2\" style=\"text-align:center;\">");
         builder.append("<img width=\"150px\" height=\"150px\" src=\"");
-        builder.append(HtmlUtils.htmlEscape(client.getAvatarURL()));
+        if (client.getAvatarURL() != null) {
+            builder.append(HtmlUtils.htmlEscape(client.getAvatarURL()));
+        }
         builder.append("\" onerror=\"this.src='/img/default_client.png'\" />");
         builder.append("</div>");
 
@@ -66,7 +64,7 @@ public class CompanyRentedBikeView {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
         builder.append("<div class=\"col-lg-1\"><b>Client name:</b><br/> ");
-        builder.append(HtmlUtils.htmlEscape(client.getUsername()));
+        builder.append(HtmlUtils.htmlEscape(client.getFirstName() + " " + client.getLastName()));
         builder.append("</div>");
 
         if (!history) {
@@ -106,8 +104,8 @@ public class CompanyRentedBikeView {
 
         if (!history) {
             builder.append("<div class=\"col-lg-1\"><b>Code:</b><br/> ");
-            builder.append(HtmlUtils.htmlEscape(lease.getPriceTotal().toString()));
-            builder.append(" RON</div>");
+            builder.append(HtmlUtils.htmlEscape(lease.getRandomCode()));
+            builder.append("</div>");
         } else {
             builder.append("<div class=\"col-lg-1\">");
             long rentHours = (lease.getTimestampFinish().getTime() - lease.getTimestampStart().getTime()) / 3600000;
@@ -174,22 +172,6 @@ public class CompanyRentedBikeView {
 
     public void setType(BikeType type) {
         this.type = type;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public Lease getLease() {

@@ -32,7 +32,6 @@ public class EmailSender {
                 API = line.split("=", 2)[1].strip();
             }
         }
-        System.out.println(API);
     }
 
     public static boolean sendEmail(String toAddress, String emailSubject, String emailContent) {

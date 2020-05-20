@@ -55,7 +55,9 @@ public class ClientRentedBikeView {
 
         builder.append("<div class=\"col-lg-2\" style=\"text-align:center;\">");
         builder.append("<img width=\"150px\" height=\"150px\" src=\"");
-        builder.append(HtmlUtils.htmlEscape(company.getAvatarURL()));
+        if (company.getAvatarURL() != null) {
+            builder.append(HtmlUtils.htmlEscape(company.getAvatarURL()));
+        }
         builder.append("\" onerror=\"this.src='/img/default_company.png'\" />");
         builder.append("</div>");
 

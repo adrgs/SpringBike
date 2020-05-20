@@ -50,7 +50,9 @@ public class RentBikeView {
 
         builder.append("<div class=\"col-lg-2\" style=\"text-align:center;\">");
         builder.append("<img width=\"150px\" height=\"150px\" src=\"");
-        builder.append(HtmlUtils.htmlEscape(company.getAvatarURL()));
+        if (company.getAvatarURL() != null) {
+            builder.append(HtmlUtils.htmlEscape(company.getAvatarURL()));
+        }
         builder.append("\" onerror=\"this.src='/img/default_company.png'\" />");
         builder.append("</div>");
 
@@ -59,7 +61,9 @@ public class RentBikeView {
         builder.append("</div>");
 
         builder.append("<div class=\"col-lg-1\"><b>Company description:</b><br/> ");
-        builder.append(HtmlUtils.htmlEscape(company.getDescription()));
+        if (company.getDescription() != null) {
+            builder.append(HtmlUtils.htmlEscape(company.getDescription()));
+        }
         builder.append("</div>");
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
