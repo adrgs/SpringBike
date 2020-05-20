@@ -38,32 +38,32 @@ public class RegisterClientController {
 
         String email = request.getParameter("email");
         if (email == null || !email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid email address.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid email address.", null);
         }
         String username = request.getParameter("username");
         if (username == null || username.length() < 3 || username.length() > 48) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username length.", null);
         }
         if (!username.matches("^[a-zA-Z0-9_]*$")) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid username characters. Only characters a-z A-Z 0-9 _ allowed", null);
         }
 
         if (ModelRepository.useModel(client).findByColumnLowerCase("username", request.getParameter("username")) != null) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "The username already exists in the database.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "The username already exists in the database.", null);
         } else {
             if (ModelRepository.useModel(client).findByColumnLowerCase("email", request.getParameter("email")) != null) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "The email already exists in the database.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "The email already exists in the database.", null);
             }
         }
 
         if (!ControllerUtils.parseModelFromInput(client, map)) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.", null);
         }
 
         client.setPassword(SBCrypt.hashPassword(client.getPassword()));
         client = (Client) ModelRepository.useModel(client).insertModel();
         if (client == null) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Account creation failed.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Account creation failed.", null);
         }
 
         return new ModelAndView("redirect:/index"); //success - to be modified to /response or something

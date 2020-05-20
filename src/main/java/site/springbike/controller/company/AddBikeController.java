@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Controller
 public class AddBikeController {
-
     public static final String VIEW = "company/add_bike";
     public static final String PATH = "/company/add_bike";
     public static final String TITLE = "Add bikes";
@@ -33,7 +32,7 @@ public class AddBikeController {
         return VIEW;
     }
 
-    @PostMapping("/company/add_bike")
+    @PostMapping(PATH)
     public ModelAndView postAddBike(HttpServletRequest request, HttpServletResponse response) {
         User user = ControllerUtils.checkAuthentication(request);
 
@@ -44,7 +43,7 @@ public class AddBikeController {
         Map<String, String[]> map = request.getParameterMap();
         Integer quantity = Integer.parseInt(request.getParameter("quantity"));
         if (quantity == null) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Quantity field missing");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Quantity field missing", user);
         }
 
         for (int i = 0; i < quantity; i++) {
@@ -52,32 +51,32 @@ public class AddBikeController {
             bikeType = (BikeType) ModelRepository.useModel(bikeType).findByColumn("type", request.getParameter("type"));
             if (bikeType == null) {
                 if (!ControllerUtils.parseModelFromInput(bikeType, map)) {
-                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.", user);
                 }
                 bikeType = (BikeType) ModelRepository.useModel(bikeType).insertModel();
                 if (bikeType == null) {
-                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+                    return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.", user);
                 }
             }
             Bike bike = new Bike();
             if (!ControllerUtils.parseModelFromInput(bike, map)) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.", user);
             }
             bike.setIdType(bikeType.getId());
             bike = (Bike) ModelRepository.useModel(bike).insertModel();
             if (bike == null) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike.", user);
             }
             Inventory inventory = new Inventory();
             if (!ControllerUtils.parseModelFromInput(inventory, map)) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Required field missing.", user);
             }
             inventory.setIdBike(bike.getId());
             inventory.setIdCompany(user.getId());
             inventory.setIdLocation(((Company) user).getIdLocation());
             inventory = (Inventory) ModelRepository.useModel(inventory).insertModel();
             if (inventory == null) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid inventory.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid inventory.", user);
             }
         }
 

@@ -106,7 +106,28 @@ public class SQLQueryBuilder {
     }
 
     public SQLQueryBuilder or() {
-        conditions += " or ";
+        conditions += " OR ";
+        return this;
+    }
+
+    public SQLQueryBuilder in(int times) {
+        if (times > 0) {
+            conditions += " IN (";
+            for (int i = 0; i < times; i++) {
+                conditions += "?";
+                if (i < times - 1) {
+                    conditions += ",";
+                }
+            }
+            conditions += ")";
+        } else {
+            conditions += " 1=2 ";
+        }
+        return this;
+    }
+
+    public SQLQueryBuilder not() {
+        conditions += " NOT ";
         return this;
     }
 

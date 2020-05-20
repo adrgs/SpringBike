@@ -1,4 +1,5 @@
-<%@ page import="site.springbike.model.User" %><%--
+<%@ page import="site.springbike.model.User" %>
+<%@ page import="site.springbike.cache.UserCacheManager" %><%--
   Created by IntelliJ IDEA.
   User: adragos
   Date: 14/05/2020
@@ -39,7 +40,7 @@
                 %>
                 <li class="${title.equals("Rent a bike") ? "active" : ""}"><a href="/client/rent_bike">Rent a bike</a>
                 </li>
-                <li class="${title.equals("Transaction history") ? "active" : ""}"><a
+                <li class="${title.equals("My transaction history") ? "active" : ""}"><a
                         href="/client/transaction_history">Transaction history</a></li>
                 <li class="${title.equals("My rented bikes") ? "active" : ""}"><a href="/client/rented_bikes">My rented
                     bikes</a></li>

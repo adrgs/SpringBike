@@ -7,10 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://db.springbike.site:3306/springbike";
-    static String USER = null;
-    static String PASS = null;
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://db.springbike.site:3306/springbike";
+    private static String USER = null;
+    private static String PASS = null;
 
     private DatabaseManager() {
     }
@@ -26,8 +26,15 @@ public class DatabaseManager {
         }
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(resource.getFile()));
-        USER = bufferedReader.readLine();
-        PASS = bufferedReader.readLine();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            if (line.startsWith("USER")) {
+                USER = line.split("=", 2)[1].strip();
+            }
+            if (line.startsWith("PASS")) {
+                PASS = line.split("=", 2)[1].strip();
+            }
+        }
     }
 
     public static Connection getConnection() throws SQLException, RuntimeException, IOException, ClassNotFoundException {

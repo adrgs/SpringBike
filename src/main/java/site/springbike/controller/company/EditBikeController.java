@@ -66,10 +66,10 @@ public class EditBikeController {
         bike = (Bike) ModelRepository.useModel(bike).selectByPrimaryKey(inventory.getIdBike());
 
         if (!ControllerUtils.parseModelFromInput(inventory, map)) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid inventory changes.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid inventory changes.", user);
         }
         if (!ControllerUtils.parseModelFromInput(bike, map)) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike changes.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike changes.", user);
         }
 
         BikeType type = new BikeType();
@@ -77,12 +77,12 @@ public class EditBikeController {
         if (type == null) {
             type = new BikeType();
             if (!ControllerUtils.parseModelFromInput(type, map)) {
-                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+                return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.", user);
             }
             type = (BikeType) ModelRepository.useModel(type).insertModel();
         }
         if (type == null) {
-            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.");
+            return ControllerUtils.errorModelAndView(VIEW, TITLE, "Invalid bike type.", user);
         }
         bike.setIdType(type.getId());
         ModelRepository.useModel(inventory).updateModel();

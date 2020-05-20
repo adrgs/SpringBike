@@ -16,10 +16,13 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class ControllerUtils {
-    public static ModelAndView errorModelAndView(String view, String title, String error) {
+    public static ModelAndView errorModelAndView(String view, String title, String error, User user) {
         ModelAndView modelAndView = new ModelAndView(view);
-        modelAndView.addObject("title", title);
         modelAndView.addObject("error", error);
+        if (!view.startsWith("redirect:/")) {
+            modelAndView.addObject("title", title);
+            modelAndView.addObject("user", user);
+        }
         return modelAndView;
     }
 

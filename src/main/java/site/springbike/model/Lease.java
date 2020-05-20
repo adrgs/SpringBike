@@ -29,7 +29,10 @@ public final class Lease implements SpringBikeModel {
     @Column(name = "price_total")
     private BigDecimal priceTotal;
 
-    public Lease(Integer id, Integer idCompany, Integer idClient, Integer idInventory, Timestamp dateStart, Timestamp dateFinish, BigDecimal priceTotal) {
+    @Column(name = "random_code")
+    private String randomCode;
+
+    public Lease(Integer id, Integer idCompany, Integer idClient, Integer idInventory, Timestamp dateStart, Timestamp dateFinish, BigDecimal priceTotal, String randomCode) {
         this.id = id;
         this.idCompany = idCompany;
         this.idClient = idClient;
@@ -37,6 +40,7 @@ public final class Lease implements SpringBikeModel {
         this.dateStart = dateStart;
         this.dateFinish = dateFinish;
         this.priceTotal = priceTotal;
+        this.randomCode = randomCode;
     }
 
     public Lease() {
@@ -96,5 +100,29 @@ public final class Lease implements SpringBikeModel {
 
     public void setPriceTotal(BigDecimal priceTotal) {
         this.priceTotal = priceTotal;
+    }
+
+    public String getRandomCode() {
+        return randomCode;
+    }
+
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
+    }
+
+    public Timestamp getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Timestamp dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Timestamp getDateFinish() {
+        return dateFinish;
+    }
+
+    public void setDateFinish(Timestamp dateFinish) {
+        this.dateFinish = dateFinish;
     }
 }

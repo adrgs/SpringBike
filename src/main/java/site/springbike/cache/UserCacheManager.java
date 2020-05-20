@@ -43,6 +43,14 @@ public class UserCacheManager {
     }
 
     public void putUser(User user) {
+        if (user == null) {
+            return;
+        }
+        if (user.getType().equals("Company")) {
+            user = (Company) ModelRepository.useModel(new Company()).selectByPrimaryKey(user.getId());
+        } else if (user.getType().equals("Client")) {
+            user = (Client) ModelRepository.useModel(new Client()).selectByPrimaryKey(user.getId());
+        }
         cacheMap.put(user.getId(), user);
     }
 }

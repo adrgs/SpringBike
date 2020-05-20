@@ -219,6 +219,12 @@ public class ModelRepository {
         return modelList.get(0);
     }
 
+    public SpringBikeModel findByColumns(HashMap<String, Object> columnsValues) {
+        List<SpringBikeModel> modelList = selectByColumns(columnsValues);
+        if (modelList.size() == 0) return null;
+        return modelList.get(0);
+    }
+
     public List<SpringBikeModel> selectByColumns(HashMap<String, Object> columnsValues) {
         Connection connection = null;
         SpringBikeModel newModel = null;
@@ -333,5 +339,76 @@ public class ModelRepository {
         }
 
         return newModel;
+    }
+
+    private List<SpringBikeModel> selectIn(String columnName, List<Object> objectList, boolean in) {
+        Connection connection = null;
+        SpringBikeModel newModel = null;
+        List<SpringBikeModel> newModels = new ArrayList<>();
+        try {
+            connection = DatabaseManager.getConnection();
+
+            String primaryKeyColumn = RepositoryUtils.getPrimaryKeyColumn(model);
+            String sql;
+            SQLQueryBuilder sqlQueryBuilder = new SQLQueryBuilder().useModel(model);
+            sqlQueryBuilder = sqlQueryBuilder.select().where();
+            if (objectList.size() > 0) {
+                sqlQueryBuilder = sqlQueryBuilder.column(columnName);
+            }
+            if (!in) {
+                sqlQueryBuilder = sqlQueryBuilder.not();
+            }
+            sqlQueryBuilder = sqlQueryBuilder.in(objectList.size());
+            sql = sqlQueryBuilder.generate();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < objectList.size(); i++) {
+                preparedStatement.setObject(i + 1, objectList.get(i));
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                newModel = (SpringBikeModel) Class.forName(model.getClass().getName()).getDeclaredConstructor().newInstance();
+                Class<?> myClass = model.getClass();
+                if (myClass.getSuperclass() != null) {
+                    for (Field field : myClass.getSuperclass().getDeclaredFields()) {
+                        field.setAccessible(true);
+                        Column column = field.getAnnotation(Column.class);
+                        if (column == null) continue;
+
+                        if (column.isBool()) {
+                            field.set(newModel, resultSet.getBoolean(column.name()));
+                        } else {
+                            field.set(newModel, resultSet.getObject(column.name()));
+                        }
+                    }
+                }
+                for (Field field : myClass.getDeclaredFields()) {
+                    Column column = field.getAnnotation(Column.class);
+                    field.setAccessible(true);
+                    if (column.isBool()) {
+                        field.set(newModel, resultSet.getBoolean(column.name()));
+                    } else {
+                        field.set(newModel, resultSet.getObject(column.name()));
+                    }
+                }
+                newModels.add(newModel);
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return newModels;
+        }
+
+        return newModels;
+    }
+
+    public List<SpringBikeModel> selectColumnNotIn(String columnName, List<Object> objectList) {
+        return selectIn(columnName, objectList, false);
+    }
+
+    public List<SpringBikeModel> selectColumnIn(String columnName, List<Object> objectList) {
+        return selectIn(columnName, objectList, true);
     }
 }

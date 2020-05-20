@@ -14,16 +14,16 @@ public final class Coupon implements SpringBikeModel {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "date_start", nullable = true)
+    @Column(name = "date_start", nullable = true, showInForm = false)
     private Timestamp dateStart;
 
-    @Column(name = "date_finish", nullable = true)
+    @Column(name = "date_finish", nullable = true, showInForm = false)
     private Timestamp dateFinish;
 
-    @Column(name = "value")
+    @Column(name = "value", showInForm = false)
     private BigDecimal value;
 
-    @Column(name = "voucher",isBool = true)
+    @Column(name = "voucher", isBool = true, showInForm = false)
     private Boolean voucher;
 
     public Coupon(Integer id, String code, Timestamp dateStart, Timestamp dateFinish, BigDecimal value, Boolean voucher) {
