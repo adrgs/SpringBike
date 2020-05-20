@@ -1,7 +1,7 @@
 <%@ page import="site.springbike.model.Client" %>
 <%@ page import="site.springbike.view.ModelViewBuilder" %><%--
   Created by IntelliJ IDEA.
-  User: adragos
+  User: Andrei
   Date: 14/05/2020
   Time: 19:35
   To change this template use File | Settings | File Templates.

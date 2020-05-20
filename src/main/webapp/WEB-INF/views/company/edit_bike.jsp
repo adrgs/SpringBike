@@ -3,7 +3,7 @@
 <%@ page import="site.springbike.model.BikeType" %>
 <%@ page import="site.springbike.model.Inventory" %><%--
   Created by IntelliJ IDEA.
-  User: adragos
+  User: Andrei
   Date: 19/05/2020
   Time: 15:16
   To change this template use File | Settings | File Templates.
