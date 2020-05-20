@@ -2,6 +2,7 @@ package site.springbike;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.ui.Model;
 import site.springbike.database.DatabaseManager;
 import site.springbike.email.EmailSender;
@@ -22,6 +23,10 @@ public class SpringBikeApplication {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(SpringBikeApplication.class);
 	}
 
 }

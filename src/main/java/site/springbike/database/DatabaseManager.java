@@ -20,12 +20,12 @@ public class DatabaseManager {
         Class.forName(JDBC_DRIVER);
 
         ClassLoader classLoader = DatabaseManager.class.getClassLoader();
-        URL resource = classLoader.getResource("credentials.txt");
+        InputStream resource = classLoader.getResourceAsStream("credentials.txt");
         if (resource == null) {
             throw new RuntimeException("File credentials.txt not found");
         }
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(resource.getFile()));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource,"UTF-8"));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             if (line.startsWith("USER")) {

@@ -9,10 +9,7 @@ import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import site.springbike.database.DatabaseManager;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 
 public class EmailSender {
@@ -20,12 +17,12 @@ public class EmailSender {
 
     public static void init() throws IOException {
         ClassLoader classLoader = EmailSender.class.getClassLoader();
-        URL resource = classLoader.getResource("credentials.txt");
+        InputStream resource = classLoader.getResourceAsStream("credentials.txt");
         if (resource == null) {
             throw new RuntimeException("File credentials.txt not found");
         }
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(resource.getFile()));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource,"UTF-8"));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             if (line.startsWith("API")) {
